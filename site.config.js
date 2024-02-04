@@ -2,7 +2,7 @@ const CONFIG = {
   // profile setting (required)
   profile: {
     name: "강재닌",
-    image: "/avatar.svg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
+    image: "/profile.png", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
     role: "iOS Software Engineer",
     bio: "",
     email: "developerjanine@gmail.com",
@@ -18,7 +18,7 @@ const CONFIG = {
   ],
   // blog setting (required)
   blog: {
-    title: "강재닌의 강한참조",
+    title: "🦋 강재닌의 강한참조",
     description: "Janine the Awesome",
   },
 
