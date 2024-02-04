@@ -12,20 +12,20 @@ const CONFIG = {
   },
   projects: [
     {
-      name: `janine-log`,
+      name: `Github`,
       href: "https://github.com/janine-kang",
     },
   ],
   // blog setting (required)
   blog: {
     title: "🦋 강재닌의 강한참조",
-    description: "Janine the Awesome",
+    description: "Go Janine Go",
   },
 
   // CONFIG configration (required)
   link: "",
   since: 2021, // If leave this empty, current year will be used.
-  lang: "en-US", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES', 'ko-KR']
+  lang: ["en-US", "ko-KR"], // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES', 'ko-KR']
   ogImageGenerateURL: "", // The link to generate OG image, don't end with a slash
 
   // notion configuration (required)
