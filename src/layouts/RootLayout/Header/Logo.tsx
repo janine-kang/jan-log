@@ -13,8 +13,8 @@ const Logo = () => {
 export default Logo
 
 const StyledWrapper = styled(Link)`
-  h1 {
+  h2 {
     padding: 0.5rem 0;
-    font-weight: 600;
+    font-weight: 700;
   }
 `

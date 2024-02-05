@@ -18,7 +18,7 @@ const CONFIG = {
   ],
   // blog setting (required)
   blog: {
-    title: "Waves 🏄🏻‍♀️",
+    title: "Waves",
     description: "Go Janine Go",
   },
 
