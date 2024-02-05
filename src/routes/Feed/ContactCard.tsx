@@ -61,7 +61,7 @@ const ContactCard: React.FC = () => {
 
 export default ContactCard
 
-const StyledTitle = styled.h2`
+const StyledTitle = styled.h4`
   padding: 0.25rem;
   margin-bottom: 0.75rem;
 `

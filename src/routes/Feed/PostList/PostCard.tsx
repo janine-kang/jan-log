@@ -34,7 +34,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
         )}
         <div data-thumb={!!data.thumbnail} data-category={!!category} className="content">
           <header className="top">
-            <h2>{data.title}</h2>
+            <h4>{data.title}</h4>
           </header>
           <div className="date">
             <div className="content">
