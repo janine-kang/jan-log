@@ -1,7 +1,7 @@
 const CONFIG = {
   // profile setting (required)
   profile: {
-    name: "강재닌",
+    name: "Janine",
     image: "/profile.png", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
     role: "iOS Software Engineer",
     bio: "",
@@ -18,7 +18,7 @@ const CONFIG = {
   ],
   // blog setting (required)
   blog: {
-    title: "Waves",
+    title: "Waves of Janine",
     description: "Go Janine Go",
   },
 
