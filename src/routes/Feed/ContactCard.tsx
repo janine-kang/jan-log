@@ -11,7 +11,7 @@ import styled from "@emotion/styled"
 const ContactCard: React.FC = () => {
   return (
     <>
-      <StyledTitle>Contact</StyledTitle>
+      <StyledTitle>💌 Contact</StyledTitle>
       <StyledWrapper>
         {CONFIG.profile.github && (
           <a
@@ -61,7 +61,7 @@ const ContactCard: React.FC = () => {
 
 export default ContactCard
 
-const StyledTitle = styled.h3`
+const StyledTitle = styled.div`
   padding: 0.25rem;
   margin-bottom: 0.5rem;
   font-weight: 500;

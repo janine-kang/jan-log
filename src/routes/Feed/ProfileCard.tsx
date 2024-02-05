@@ -9,10 +9,9 @@ type Props = {}
 const ProfileCard: React.FC<Props> = () => {
   return (
     <StyledWrapper>
-      <h3 className="title">
+      {/* <h3 className="title">
         Profile
-        {/* <Emoji>💻</Emoji> Profile */}
-      </h3>
+      </h3> */}
       <div className="content">
         <div className="top">
           <Image src={CONFIG.profile.image} fill alt="" />
