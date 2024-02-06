@@ -45,13 +45,11 @@ const Category: React.FC<Props> = ({ readOnly = false, children }) => {
 export default Category
 
 const StyledWrapper = styled.div`
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   width: fit-content;
   font-size: 0.875rem;
+  font-weight: 500;
   line-height: 1.25rem;
   opacity: 0.9;
   color: ${colors.dark.gray1};

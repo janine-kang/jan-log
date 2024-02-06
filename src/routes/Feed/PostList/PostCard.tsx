@@ -32,7 +32,11 @@ const PostCard: React.FC<Props> = ({ data }) => {
             />
           </div>
         )}
-        <div data-thumb={!!data.thumbnail} data-category={!!category} className="content">
+        <div
+          data-thumb={!!data.thumbnail}
+          data-category={!!category}
+          className="content"
+        >
           <header className="top">
             <h4>{data.title}</h4>
           </header>
@@ -116,8 +120,7 @@ const StyledWrapper = styled(Link)`
           flex-direction: row;
           align-items: baseline;
         }
-        h2 {
-          margin-bottom: 0.5rem;
+        h4 {
           font-size: 1.125rem;
           line-height: 1.75rem;
           font-weight: 500;

@@ -64,7 +64,7 @@ const StyledWrapper = styled.div`
 
   padding: 2rem 0;
   display: grid;
-  gap: 1.5rem;
+  gap: 2rem;
 
   @media (max-width: 768px) {
     display: block;

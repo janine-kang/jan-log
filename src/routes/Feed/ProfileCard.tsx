@@ -41,10 +41,10 @@ const StyledWrapper = styled.div`
     background-color: ${({ theme }) =>
       theme.scheme === "light" ? "white" : theme.colors.gray4};
     @media (min-width: 768px) {
-      padding: 1rem;
+      padding: 0.75rem;
     }
     @media (min-width: 1024px) {
-      padding: 1rem;
+      padding: 0.75rem;
     }
     .top {
       position: relative;
