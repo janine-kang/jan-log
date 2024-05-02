@@ -11,10 +11,10 @@ const Detail: React.FC<Props> = () => {
   useMermaidEffect()
 
   if (!data) return null
+
   return (
-    <StyledWrapper data-type={data.type}>
-      {data.type[0] === "Page" && <PageDetail />}
-      {data.type[0] !== "Page" && <PostDetail />}
+    <StyledWrapper data-type={data.category}>
+      <PostDetail />
     </StyledWrapper>
   )
 }

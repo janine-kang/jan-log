@@ -12,16 +12,15 @@ export type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-export type TPostStatus = "Private" | "Public" | "PublicOnDetail"
-export type TPostType = "Post" | "Paper" | "Page"
+export type TCategory = "post" | "books" | "journal" | "work"
 
 export type TPost = {
   id: string
   date: { start_date: string }
-  type: TPostType[]
+  type: TCategory
   slug: string
   tags?: string[]
-  category?: string[]
+  category: string
   summary?: string
   author?: {
     id: string
@@ -29,7 +28,7 @@ export type TPost = {
     profile_photo?: string
   }[]
   title: string
-  status: TPostStatus[]
+  published: "Yes" | undefined
   createdTime: string
   fullWidth: boolean
   thumbnail?: string

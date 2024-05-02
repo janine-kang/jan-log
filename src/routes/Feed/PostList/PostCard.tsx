@@ -4,7 +4,6 @@ import { formatDate } from "src/libs/utils"
 import Tag from "../../../components/Tag"
 import { TPost } from "../../../types"
 import Image from "next/image"
-import Category from "../../../components/Category"
 import styled from "@emotion/styled"
 
 type Props = {
@@ -15,13 +14,8 @@ const PostCard: React.FC<Props> = ({ data }) => {
   const category = (data.category && data.category?.[0]) || undefined
 
   return (
-    <StyledWrapper href={`/${data.slug}`}>
+    <StyledWrapper href={`/${category}/${data.slug}`}>
       <article>
-        {category && (
-          <div className="category">
-            <Category>{category}</Category>
-          </div>
-        )}
         {data.thumbnail && (
           <div className="thumbnail">
             <Image

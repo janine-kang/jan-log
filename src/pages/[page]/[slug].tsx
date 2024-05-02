@@ -1,7 +1,7 @@
 import Detail from "src/routes/Detail"
 import { filterPosts } from "src/libs/utils/notion"
 import { CONFIG } from "site.config"
-import { NextPageWithLayout } from "../types"
+import { NextPageWithLayout } from "../../types"
 import CustomError from "src/routes/Error"
 import { getRecordMap, getPosts } from "src/apis"
 import MetaConfig from "src/components/MetaConfig"
@@ -10,19 +10,15 @@ import { queryClient } from "src/libs/react-query"
 import { queryKey } from "src/constants/queryKey"
 import { dehydrate } from "@tanstack/react-query"
 import usePostQuery from "src/hooks/usePostQuery"
-import { FilterPostsOptions } from "src/libs/utils/notion/filterPosts"
-
-const filter: FilterPostsOptions = {
-  acceptStatus: ["Public", "PublicOnDetail"],
-  acceptType: ["Paper", "Post", "Page"],
-}
+import { TCategory } from "src/types"
 
 export const getStaticPaths = async () => {
   const posts = await getPosts()
-  const filteredPost = filterPosts(posts, filter)
+  /// all post
+  const filteredPost = filterPosts(posts)
 
   return {
-    paths: filteredPost.map((row) => `/${row.slug}`),
+    paths: filteredPost.map((row) => `/${row.category}/${row.slug}`),
     fallback: true,
   }
 }
@@ -34,7 +30,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const feedPosts = filterPosts(posts)
   await queryClient.prefetchQuery(queryKey.posts(), () => feedPosts)
 
-  const detailPosts = filterPosts(posts, filter)
+  // 우선 category 안넘김
+  const detailPosts = filterPosts(posts)
+
   const postDetail = detailPosts.find((t: any) => t.slug === slug)
   const recordMap = await getRecordMap(postDetail?.id!)
 
@@ -68,8 +66,8 @@ const DetailPage: NextPageWithLayout = () => {
     date: new Date(date).toISOString(),
     image: image,
     description: post.summary || "",
-    type: post.type[0],
-    url: `${CONFIG.link}/${post.slug}`,
+    category: post.category as TCategory,
+    url: `${CONFIG.link}/${post.category}/${post.slug}`,
   }
 
   return (
