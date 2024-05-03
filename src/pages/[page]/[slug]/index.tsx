@@ -1,7 +1,7 @@
 import Detail from "src/routes/Detail"
 import { filterPosts } from "src/libs/utils/notion"
 import { CONFIG } from "site.config"
-import { NextPageWithLayout, toTCategory } from "../../../types"
+import { NextPageWithLayout, toTSection } from "../../../types"
 import CustomError from "src/routes/Error"
 import { getRecordMap, getPosts } from "src/apis"
 import MetaConfig from "src/components/MetaConfig"
@@ -10,7 +10,7 @@ import { queryClient } from "src/libs/react-query"
 import { queryKey } from "src/constants/queryKey"
 import { dehydrate } from "@tanstack/react-query"
 import usePostQuery from "src/hooks/usePostQuery"
-import { TCategory } from "src/types"
+import { TSection } from "src/types"
 
 export const getStaticPaths = async () => {
   const posts = await getPosts()
@@ -18,7 +18,7 @@ export const getStaticPaths = async () => {
   const filteredPost = filterPosts(posts)
 
   return {
-    paths: filteredPost.map((row) => `/${row.category}/${row.slug ?? "all"}`),
+    paths: filteredPost.map((row) => `/${row.section}/${row.slug ?? "all"}`),
     fallback: true,
   }
 }
@@ -66,8 +66,8 @@ const DetailPage: NextPageWithLayout = () => {
     date: new Date(date).toISOString(),
     image: image,
     description: post.summary || "",
-    category: toTCategory(post.category),
-    url: `${CONFIG.link}/${post.category}/${post.slug}`,
+    section: toTSection(post.section),
+    url: `${CONFIG.link}/${post.section}/${post.slug}`,
   }
 
   return (

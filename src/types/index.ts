@@ -12,7 +12,7 @@ export type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-export enum TCategory {
+export enum TSection {
   post = "post",
   books = "books",
   journal = "journal",
@@ -21,28 +21,28 @@ export enum TCategory {
   none = "",
 }
 
-export function toTCategory(key: string): TCategory {
+export function toTSection(key: string): TSection {
   switch (key) {
     case "post":
-      return TCategory.post
+      return TSection.post
     case "books":
-      return TCategory.books
+      return TSection.books
     case "journal":
-      return TCategory.journal
+      return TSection.journal
     case "work":
-      return TCategory.work
+      return TSection.work
     default:
-      return TCategory.none
+      return TSection.none
   }
 }
 
 export type TPost = {
   id: string
   date: { start_date: string }
-  type: TCategory
+  type: TSection
   slug: string
   tags?: string[]
-  category: string
+  section: string
   summary?: string
   author?: {
     id: string
@@ -50,7 +50,8 @@ export type TPost = {
     profile_photo?: string
   }[]
   title: string
-  published: "Yes" | undefined
+  published: "Yes" | "No" | undefined
+  pinned: "Yes" | "No" | undefined
   createdTime: string
   fullWidth: boolean
   thumbnail?: string

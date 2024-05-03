@@ -13,7 +13,7 @@ const Detail: React.FC<Props> = () => {
   if (!data) return null
 
   return (
-    <StyledWrapper data-type={data.category}>
+    <StyledWrapper data-type={data.section}>
       <PostDetail />
     </StyledWrapper>
   )

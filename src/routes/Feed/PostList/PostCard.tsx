@@ -11,10 +11,10 @@ type Props = {
 }
 
 const PostCard: React.FC<Props> = ({ data }) => {
-  const category = (data.category && data.category?.[0]) || undefined
+  const section = (data.section && data.section?.[0]) || undefined
 
   return (
-    <StyledWrapper href={`/${category}/${data.slug}`}>
+    <StyledWrapper href={`/${section}/${data.slug}`}>
       <article>
         {data.thumbnail && (
           <div className="thumbnail">
@@ -28,7 +28,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
         )}
         <div
           data-thumb={!!data.thumbnail}
-          data-category={!!category}
+          data-category={!!section}
           className="content"
         >
           <header className="top">

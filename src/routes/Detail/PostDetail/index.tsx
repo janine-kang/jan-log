@@ -14,14 +14,14 @@ const PostDetail: React.FC<Props> = () => {
 
   if (!data) return null
 
-  const category = (data.category && data.category?.[0]) || undefined
+  const section = (data.section && data.section?.[0]) || undefined
 
   return (
     <StyledWrapper>
       <article>
-        {category && (
+        {section && (
           <div css={{ marginBottom: "0.5rem" }}>
-            <Category readOnly={data.published === "Yes"}>{category}</Category>
+            <Category readOnly={data.published === "Yes"}>{section}</Category>
           </div>
         )}
         <PostHeader data={data} />

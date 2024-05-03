@@ -22,7 +22,7 @@ const _NotionRenderer = dynamic(
 )
 
 const Code = dynamic(() =>
-  import("react-notion-x/build/third-party/code").then(async (m) =>  m.Code )
+  import("react-notion-x/build/third-party/code").then(async (m) => m.Code)
 )
 
 const Collection = dynamic(() =>
@@ -59,7 +59,6 @@ const NotionRenderer: FC<Props> = ({ recordMap }) => {
   return (
     <StyledWrapper>
       <_NotionRenderer
-        darkMode={scheme === "dark"}
         recordMap={recordMap}
         components={{
           Code,

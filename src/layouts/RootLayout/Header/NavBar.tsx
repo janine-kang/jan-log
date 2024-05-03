@@ -1,17 +1,17 @@
 import styled from "@emotion/styled"
 import Link from "next/link"
-import { TCategory } from "src/types"
+import { TSection } from "src/types"
 
 const NavBar: React.FC = () => {
   const links = [
-    { id: 1, name: "ARCHIVE", to: `/${TCategory.post}` },
-    { id: 2, name: "BOOKS", to: `/${TCategory.books}` },
-    { id: 3, name: "JOURNAL", to: `/${TCategory.journal}` },
+    { id: 1, name: "ARCHIVE", to: `/${TSection.post}` },
+    { id: 2, name: "BOOKS", to: `/${TSection.books}` },
+    { id: 3, name: "JOURNAL", to: `/${TSection.journal}` },
   ]
 
   const introduce = [
-    { id: 4, name: "ABOUT", to: `/${TCategory.about}` },
-    { id: 5, name: "JANINE", to: `/${TCategory.work}` },
+    { id: 4, name: "ABOUT", to: `/${TSection.about}` },
+    { id: 5, name: "JANINE", to: `/${TSection.work}` },
   ]
 
   return (
@@ -64,5 +64,10 @@ const StyledWrapper = styled.div`
 
   .blog {
     gap: 1.2rem;
+  }
+  .mypage {
+    li {
+      font-weight: 500;
+    }
   }
 `

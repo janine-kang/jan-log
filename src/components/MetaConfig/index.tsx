@@ -1,11 +1,11 @@
 import { CONFIG } from "site.config"
 import Head from "next/head"
-import { TCategory } from "src/types"
+import { TSection } from "src/types"
 
 export type MetaConfigProps = {
   title: string
   description: string
-  category?: TCategory
+  section?: TSection
   date?: string
   image?: string
   url: string
@@ -19,7 +19,7 @@ const MetaConfig: React.FC<MetaConfigProps> = (props) => {
       <meta charSet="UTF-8" />
       <meta name="description" content={props.description} />
       {/* og */}
-      <meta property="og:category" content={props.category} />
+      <meta property="og:section" content={props.section} />
       <meta property="og:title" content={props.title} />
       <meta property="og:description" content={props.description} />
       <meta property="og:url" content={props.url} />
