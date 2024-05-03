@@ -1,8 +1,14 @@
 import styled from "@emotion/styled"
 import Link from "next/link"
+import { TCategory } from "src/types"
 
 const NavBar: React.FC = () => {
-  const links = [{ id: 1, name: "About", to: "/about" }]
+  const links = [
+    { id: 1, name: "Archive", to: `/${TCategory.post}` },
+    { id: 2, name: "Books", to: `/${TCategory.books}` },
+    { id: 3, name: "Journal", to: `/${TCategory.journal}` },
+    { id: 4, name: "Work", to: `/${TCategory.work}` },
+  ]
   return (
     <StyledWrapper className="">
       <ul>

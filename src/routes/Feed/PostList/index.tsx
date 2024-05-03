@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import PostCard from "src/routes/Feed/PostList/PostCard"
 import usePostsQuery from "src/hooks/usePostsQuery"
-import { TCategory } from "src/types"
+import { TCategory, toTCategory } from "src/types"
 
 type Props = {
   category?: TCategory
@@ -21,7 +21,7 @@ const PostList: React.FC<Props> = ({ category }) => {
 
       if (category) {
         newFilteredPosts = newFilteredPosts.filter(
-          (post) => category == post.category
+          (post) => toTCategory(post.category[0]) === category
         )
       }
 
@@ -33,8 +33,9 @@ const PostList: React.FC<Props> = ({ category }) => {
       }
       return newFilteredPosts
     })
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentTag, setFilteredPosts])
+  }, [category, currentTag, setFilteredPosts])
 
   return (
     <>

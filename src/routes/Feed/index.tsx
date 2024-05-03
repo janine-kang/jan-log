@@ -1,5 +1,3 @@
-import { useState } from "react"
-
 import Footer from "./Footer"
 import styled from "@emotion/styled"
 import TagList from "./TagList"
@@ -13,8 +11,6 @@ const HEADER_HEIGHT = 73
 type Props = {}
 
 const Feed: React.FC<Props> = () => {
-  const [q, setQ] = useState("")
-
   return (
     <StyledWrapper>
       <div

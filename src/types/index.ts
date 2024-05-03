@@ -12,7 +12,28 @@ export type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-export type TCategory = "post" | "books" | "journal" | "work"
+export enum TCategory {
+  post = "post",
+  books = "books",
+  journal = "journal",
+  work = "work",
+  none = "",
+}
+
+export function toTCategory(key: string): TCategory {
+  switch (key) {
+    case "post":
+      return TCategory.post
+    case "books":
+      return TCategory.books
+    case "journal":
+      return TCategory.journal
+    case "work":
+      return TCategory.work
+    default:
+      return TCategory.none
+  }
+}
 
 export type TPost = {
   id: string

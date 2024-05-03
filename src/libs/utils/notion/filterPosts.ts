@@ -1,4 +1,4 @@
-import { TPosts, TCategory } from "src/types"
+import { TPosts, TCategory, toTCategory } from "src/types"
 
 const current = new Date()
 const tomorrow = new Date(current)
@@ -22,7 +22,7 @@ export function filterPosts(posts: TPosts, category?: TCategory) {
         if (!category) {
           return true
         }
-        return post.category === category
+        return toTCategory(post.category) === category
       })
   )
 }
