@@ -2,6 +2,7 @@ import NavBar from "./NavBar"
 import Logo from "./Logo"
 import styled from "@emotion/styled"
 import { zIndexes } from "src/styles/zIndexes"
+import { TCategory } from "src/types"
 
 type Props = {
   fullWidth: boolean
@@ -12,10 +13,7 @@ const Header: React.FC<Props> = ({ fullWidth }) => {
     <StyledWrapper>
       <div data-full-width={fullWidth} className="container">
         <Logo />
-        <div className="nav">
-          {/* <ThemeToggle /> */}
-          <NavBar />
-        </div>
+        <NavBar />
       </div>
     </StyledWrapper>
   )
@@ -28,28 +26,24 @@ const StyledWrapper = styled.div`
   position: sticky;
   top: 0;
   background-color: ${({ theme }) => theme.colors.gray2};
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  padding: 0 36px;
+  height: 100px;
 
   .container {
     display: flex;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
+
     width: 100%;
-    max-width: 1120px;
-    height: 3.5rem;
+    max-width: 1200px;
+    height: 100%;
     margin: 0 auto;
+
     &[data-full-width="true"] {
       @media (min-width: 768px) {
         padding-left: 6rem;
         padding-right: 6rem;
       }
-    }
-    .nav {
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
     }
   }
 `

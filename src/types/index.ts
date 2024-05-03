@@ -17,6 +17,7 @@ export enum TCategory {
   books = "books",
   journal = "journal",
   work = "work",
+  about = "about",
   none = "",
 }
 

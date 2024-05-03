@@ -19,7 +19,7 @@ const CONFIG = {
   // blog setting (required)
   blog: {
     title: "Waves of Janine",
-    description: "🌊🌊🌊🏄🏻‍♀️🌊🌊🌊🌊",
+    description: "🌊🏄🏻‍♀️🌊🌊",
   },
 
   // CONFIG configration (required)
