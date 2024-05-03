@@ -16,16 +16,6 @@ const PostCard: React.FC<Props> = ({ data }) => {
   return (
     <StyledWrapper href={`/${section}/${data.slug}`}>
       <article>
-        {data.thumbnail && (
-          <div className="thumbnail">
-            <Image
-              src={data.thumbnail}
-              fill
-              alt={data.title}
-              css={{ objectFit: "cover" }}
-            />
-          </div>
-        )}
         <div
           data-thumb={!!data.thumbnail}
           data-category={!!section}

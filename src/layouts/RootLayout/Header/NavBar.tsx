@@ -43,7 +43,6 @@ const StyledWrapper = styled.div`
   justify-content: space-between;
 
   margin-left: 16px;
-  margin-right: 64px;
   white-space: nowrap;
 
   ul {

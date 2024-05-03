@@ -1,10 +1,11 @@
-import Footer from "./Footer"
+import Footer from "./Components/Footer"
 import styled from "@emotion/styled"
-import TagList from "./TagList"
-import MobileProfileCard from "./MobileProfileCard"
-import ProfileCard from "./ProfileCard"
-import ContactCard from "./ContactCard"
+import TagList from "./Components/TagList"
+import MobileProfileCard from "./Components/MobileProfileCard"
+import ProfileCard from "./Components/ProfileCard"
+import ContactCard from "./Components/ContactCard"
 import PostList from "./PostList"
+import { FeedHeader } from "./FeedHeader"
 
 const HEADER_HEIGHT = 73
 
@@ -13,15 +14,8 @@ type Props = {}
 const Feed: React.FC<Props> = () => {
   return (
     <StyledWrapper>
-      <div
-        className="lt"
-        css={{
-          height: `calc(100vh - ${HEADER_HEIGHT}px)`,
-        }}
-      >
-        <TagList />
-      </div>
       <div className="mid">
+        <FeedHeader />
         <MobileProfileCard />
         <div className="tags">
           <TagList />
@@ -38,7 +32,6 @@ const Feed: React.FC<Props> = () => {
         }}
       >
         <ProfileCard />
-        {/* <ServiceCard /> */}
         <ContactCard />
         <div className="footer">
           <Footer />
@@ -84,7 +77,7 @@ const StyledWrapper = styled.div`
     grid-column: span 12 / span 12;
 
     @media (min-width: 1024px) {
-      grid-column: span 7 / span 7;
+      grid-column: span 9 / span 9;
     }
 
     > .tags {

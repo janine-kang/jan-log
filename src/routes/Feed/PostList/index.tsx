@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react"
 import PostCard from "src/routes/Feed/PostList/PostCard"
 import usePostsQuery from "src/hooks/usePostsQuery"
 import { TSection, TPost, toTSection } from "src/types"
-import PostListHeader from "./PostListHeader"
 
 type Props = {
   section?: TSection
@@ -46,12 +45,6 @@ const PostList: React.FC<Props> = ({ section }) => {
           <p className="text-gray-500 dark:text-gray-300">
             등록된 글이 없습니다.
           </p>
-        )}
-
-        {!section && (
-          <PostListHeader
-            pinned={data.filter((post) => post.pinned === "Yes")[0]}
-          />
         )}
         {!section &&
           filteredPosts

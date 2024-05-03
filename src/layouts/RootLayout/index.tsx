@@ -67,6 +67,5 @@ export default RootLayout
 const StyledMain = styled.main`
   margin: 0 auto;
   width: 100%;
-  max-width: 1120px;
-  padding: 0 1rem;
+  max-width: 1200px;
 `

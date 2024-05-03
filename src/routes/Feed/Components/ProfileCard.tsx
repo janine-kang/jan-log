@@ -3,19 +3,15 @@ import Image from "next/image"
 import React from "react"
 import styled from "@emotion/styled"
 import { Emoji } from "src/components/Emoji"
+import { inter } from "src/assets"
 
 type Props = {}
 
 const ProfileCard: React.FC<Props> = () => {
   return (
     <StyledWrapper>
-      {/* <h3 className="title">
-        Profile
-      </h3> */}
+      <div>profile</div>
       <div className="content">
-        <div className="top">
-          <Image src={CONFIG.profile.image} fill alt="" />
-        </div>
         <div className="mid">
           <div className=" name">{CONFIG.profile.name}</div>
           <div className="role">{CONFIG.profile.role}</div>
@@ -63,7 +59,7 @@ const StyledWrapper = styled.div`
       .name {
         font-size: 1.25rem;
         line-height: 1.75rem;
-        font-style: italic;
+        font-family: ${inter.style.fontFamily};
         font-weight: 700;
       }
       .role {
