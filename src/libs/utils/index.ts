@@ -1,6 +1,10 @@
-export function formatDate(date: any, local: any) {
+export function formatDate(date: any, local: any = "en-US") {
   const d = new Date(date)
-  const options: any = { year: 'numeric', month: 'short', day: 'numeric' }
+  const options: any = {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }
   const res = d.toLocaleDateString(local, options)
   return res
 }

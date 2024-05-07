@@ -1,41 +1,30 @@
-import { useState } from "react"
-
-import SearchInput from "./SearchInput"
-import { FeedHeader } from "./FeedHeader"
-import Footer from "./Footer"
+import Footer from "./Components/Footer"
 import styled from "@emotion/styled"
-import TagList from "./TagList"
-import MobileProfileCard from "./MobileProfileCard"
-import ProfileCard from "./ProfileCard"
-import ServiceCard from "./ServiceCard"
-import ContactCard from "./ContactCard"
+import TagList from "./Components/TagList"
+import MobileProfileCard from "./Components/MobileProfileCard"
+import ProfileCard from "./Components/ProfileCard"
+import ContactCard from "./Components/ContactCard"
 import PostList from "./PostList"
+import { FeedHeader } from "./FeedHeader"
+import { inter } from "src/assets"
 
 const HEADER_HEIGHT = 73
 
 type Props = {}
 
 const Feed: React.FC<Props> = () => {
-  const [q, setQ] = useState("")
-
   return (
     <StyledWrapper>
-      <div
-        className="lt"
-        css={{
-          height: `calc(100vh - ${HEADER_HEIGHT}px)`,
-        }}
-      >
-        <TagList />
-      </div>
       <div className="mid">
         <MobileProfileCard />
-        <SearchInput value={q} onChange={(e) => setQ(e.target.value)} />
+        <FeedHeader />
         <div className="tags">
           <TagList />
         </div>
-        <FeedHeader />
-        <PostList q={q} />
+        <div className="contents">
+          <p className="time">more issues</p>
+          <PostList />
+        </div>
         <div className="footer">
           <Footer />
         </div>
@@ -47,8 +36,6 @@ const Feed: React.FC<Props> = () => {
         }}
       >
         <ProfileCard />
-        {/* <ServiceCard /> */}
-        <ContactCard />
         <div className="footer">
           <Footer />
         </div>
@@ -93,7 +80,28 @@ const StyledWrapper = styled.div`
     grid-column: span 12 / span 12;
 
     @media (min-width: 1024px) {
-      grid-column: span 7 / span 7;
+      grid-column: span 9 / span 9;
+    }
+
+    .contents {
+      .time {
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        font-family: ${inter.style.fontFamily};
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+      .time:after {
+        content: "";
+        flex-grow: 1;
+        height: 1px;
+        margin: 0 1rem;
+        background: black;
+      }
     }
 
     > .tags {

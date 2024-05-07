@@ -12,16 +12,37 @@ export type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-export type TPostStatus = "Private" | "Public" | "PublicOnDetail"
-export type TPostType = "Post" | "Paper" | "Page"
+export enum TSection {
+  archive = "archive",
+  books = "books",
+  journal = "journal",
+  work = "work",
+  about = "about",
+  none = "",
+}
+
+export function toTSection(key: string): TSection {
+  switch (key) {
+    case "archive":
+      return TSection.archive
+    case "books":
+      return TSection.books
+    case "journal":
+      return TSection.journal
+    case "work":
+      return TSection.work
+    default:
+      return TSection.none
+  }
+}
 
 export type TPost = {
   id: string
   date: { start_date: string }
-  type: TPostType[]
+  type: TSection
   slug: string
   tags?: string[]
-  category?: string[]
+  section: string
   summary?: string
   author?: {
     id: string
@@ -29,7 +50,8 @@ export type TPost = {
     profile_photo?: string
   }[]
   title: string
-  status: TPostStatus[]
+  published: "Yes" | "No" | undefined
+  pinned: "Yes" | "No" | undefined
   createdTime: string
   fullWidth: boolean
   thumbnail?: string

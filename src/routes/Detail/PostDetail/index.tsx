@@ -14,28 +14,24 @@ const PostDetail: React.FC<Props> = () => {
 
   if (!data) return null
 
-  const category = (data.category && data.category?.[0]) || undefined
+  const section = (data.section && data.section?.[0]) || undefined
 
   return (
     <StyledWrapper>
       <article>
-        {category && (
+        {section && (
           <div css={{ marginBottom: "0.5rem" }}>
-            <Category readOnly={data.status?.[0] === "PublicOnDetail"}>
-              {category}
-            </Category>
+            <Category readOnly={data.published === "Yes"}>{section}</Category>
           </div>
         )}
-        {data.type[0] === "Post" && <PostHeader data={data} />}
+        <PostHeader data={data} />
         <div>
           <NotionRenderer recordMap={data.recordMap} />
         </div>
-        {data.type[0] === "Post" && (
-          <>
-            <Footer />
-            <CommentBox data={data} />
-          </>
-        )}
+        <>
+          <Footer />
+          <CommentBox data={data} />
+        </>
       </article>
     </StyledWrapper>
   )

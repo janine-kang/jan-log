@@ -4,7 +4,7 @@ import { getAllSelectItemsFromPosts } from "src/libs/utils/notion"
 
 export const useCategoriesQuery = () => {
   const posts = usePostsQuery()
-  const categories = getAllSelectItemsFromPosts("category", posts)
+  const categories = getAllSelectItemsFromPosts("section", posts)
 
   return {
     [DEFAULT_CATEGORY]: posts.length,

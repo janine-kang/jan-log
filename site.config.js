@@ -2,9 +2,9 @@ const CONFIG = {
   // profile setting (required)
   profile: {
     name: "Janine",
-    image: "/profile.png", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
+    image: "/profile.jpeg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
     role: "iOS Software Engineer",
-    bio: "",
+    bio: "그럼에도 불구하고 배움을 멈추지 않겠다 마음먹는 순간들이 진정한 성장이라고 생각합니다.",
     email: "developerjanine@gmail.com",
     linkedin: "janine-kang",
     github: "janine-kang",
@@ -19,7 +19,7 @@ const CONFIG = {
   // blog setting (required)
   blog: {
     title: "Waves of Janine",
-    description: "🌊🌊🌊🏄🏻‍♀️🌊🌊🌊🌊",
+    description: "🌊🏄🏻‍♀️🌊🌊",
   },
 
   // CONFIG configration (required)
@@ -30,6 +30,7 @@ const CONFIG = {
 
   // notion configuration (required)
   notionConfig: {
+    aboutId: process.env.NOTION_ABOUT_PAGE_ID,
     pageId: process.env.NOTION_PAGE_ID,
   },
 

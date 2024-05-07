@@ -2,25 +2,27 @@ import { CONFIG } from "site.config"
 import Image from "next/image"
 import React from "react"
 import styled from "@emotion/styled"
-import { Emoji } from "src/components/Emoji"
+import { inter } from "src/assets"
+import { permanentMarker } from "src/assets/fonts/permanentMarker"
+import ContactCard from "./ContactCard"
 
 type Props = {}
 
 const ProfileCard: React.FC<Props> = () => {
   return (
     <StyledWrapper>
-      {/* <h3 className="title">
-        Profile
-      </h3> */}
+      {/* <div className="title">about me</div> */}
       <div className="content">
+        <div className="title">about me</div>
         <div className="top">
           <Image src={CONFIG.profile.image} fill alt="" />
         </div>
         <div className="mid">
-          <div className=" name">{CONFIG.profile.name}</div>
+          <div className="name">{CONFIG.profile.name}</div>
           <div className="role">{CONFIG.profile.role}</div>
-          <div className="text-sm mb-2">{CONFIG.profile.bio}</div>
+          <div className="bio">{CONFIG.profile.bio}</div>
         </div>
+        <ContactCard />
       </div>
     </StyledWrapper>
   )
@@ -29,26 +31,30 @@ const ProfileCard: React.FC<Props> = () => {
 export default ProfileCard
 
 const StyledWrapper = styled.div`
-  > .title {
-    padding: 0.25rem;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
+  .title {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
+    font-family: ${permanentMarker.style.fontFamily};
   }
-  > .content {
-    margin-bottom: 2.25rem;
-    border-radius: 1rem;
+
+  .content {
     width: 100%;
-    background-color: ${({ theme }) =>
-      theme.scheme === "light" ? "white" : theme.colors.gray4};
+    background: white;
+    border-radius: 10px;
+
     @media (min-width: 768px) {
-      padding: 0.75rem;
+      padding: 0.5rem 0.8rem;
     }
     @media (min-width: 1024px) {
-      padding: 0.75rem;
+      padding: 0.5rem 0.8rem;
     }
     .top {
       position: relative;
       width: 100%;
+      border-radius: 100px;
       &:after {
         content: "";
         display: block;
@@ -63,12 +69,12 @@ const StyledWrapper = styled.div`
       .name {
         font-size: 1.25rem;
         line-height: 1.75rem;
-        font-style: italic;
+        font-family: ${inter.style.fontFamily};
         font-weight: 700;
       }
       .role {
         margin-bottom: 1rem;
-        font-size: 0.875rem;
+        font-size: 0.75rem;
         line-height: 1.25rem;
         color: ${({ theme }) => theme.colors.gray11};
       }
@@ -76,6 +82,9 @@ const StyledWrapper = styled.div`
         margin-bottom: 0.5rem;
         font-size: 0.875rem;
         line-height: 1.25rem;
+        word-break: keep-all;
+        text-align: center;
+        letter-spacing: 0.6px;
       }
     }
   }
