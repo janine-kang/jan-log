@@ -1,3 +1,2 @@
 # jan-log
-forked from @morethanmin/morethan-log
-
+customized blog template based on @morethanmin/morethan-log
