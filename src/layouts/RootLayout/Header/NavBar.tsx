@@ -4,7 +4,7 @@ import { TSection } from "src/types"
 
 const NavBar: React.FC = () => {
   const links = [
-    { id: 1, name: "ARCHIVE", to: `/${TSection.post}` },
+    { id: 1, name: "ARCHIVE", to: `/${TSection.archive}` },
     { id: 2, name: "BOOKS", to: `/${TSection.books}` },
     { id: 3, name: "JOURNAL", to: `/${TSection.journal}` },
   ]

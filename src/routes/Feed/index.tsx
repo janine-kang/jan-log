@@ -6,6 +6,7 @@ import ProfileCard from "./Components/ProfileCard"
 import ContactCard from "./Components/ContactCard"
 import PostList from "./PostList"
 import { FeedHeader } from "./FeedHeader"
+import { inter } from "src/assets"
 
 const HEADER_HEIGHT = 73
 
@@ -15,12 +16,15 @@ const Feed: React.FC<Props> = () => {
   return (
     <StyledWrapper>
       <div className="mid">
-        <FeedHeader />
         <MobileProfileCard />
+        <FeedHeader />
         <div className="tags">
           <TagList />
         </div>
-        <PostList />
+        <div className="contents">
+          <p className="time">more issues</p>
+          <PostList />
+        </div>
         <div className="footer">
           <Footer />
         </div>
@@ -32,7 +36,6 @@ const Feed: React.FC<Props> = () => {
         }}
       >
         <ProfileCard />
-        <ContactCard />
         <div className="footer">
           <Footer />
         </div>
@@ -78,6 +81,27 @@ const StyledWrapper = styled.div`
 
     @media (min-width: 1024px) {
       grid-column: span 9 / span 9;
+    }
+
+    .contents {
+      .time {
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        font-family: ${inter.style.fontFamily};
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+      .time:after {
+        content: "";
+        flex-grow: 1;
+        height: 1px;
+        margin: 0 1rem;
+        background: black;
+      }
     }
 
     > .tags {

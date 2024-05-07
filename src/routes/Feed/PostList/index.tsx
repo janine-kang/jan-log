@@ -11,7 +11,6 @@ type Props = {
 const PostList: React.FC<Props> = ({ section }) => {
   const router = useRouter()
   const data = usePostsQuery()
-
   const [filteredPosts, setFilteredPosts] = useState(data)
 
   const currentTag = `${router.query.tag || ``}` || undefined
@@ -41,11 +40,7 @@ const PostList: React.FC<Props> = ({ section }) => {
   return (
     <>
       <div className="my-2">
-        {!filteredPosts.length && (
-          <p className="text-gray-500 dark:text-gray-300">
-            등록된 글이 없습니다.
-          </p>
-        )}
+        {!filteredPosts.length && <p>등록된 글이 없습니다.</p>}
         {!section &&
           filteredPosts
             .filter((post) => !post.pinned || post.pinned === "No")

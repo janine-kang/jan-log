@@ -13,7 +13,7 @@ export type AppPropsWithLayout = AppProps & {
 }
 
 export enum TSection {
-  post = "post",
+  archive = "archive",
   books = "books",
   journal = "journal",
   work = "work",
@@ -23,8 +23,8 @@ export enum TSection {
 
 export function toTSection(key: string): TSection {
   switch (key) {
-    case "post":
-      return TSection.post
+    case "archive":
+      return TSection.archive
     case "books":
       return TSection.books
     case "journal":

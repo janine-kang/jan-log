@@ -1,6 +1,7 @@
 import { CONFIG } from "site.config"
 import React from "react"
 import styled from "@emotion/styled"
+import { inter } from "src/assets"
 
 const d = new Date()
 const y = d.getFullYear()
@@ -28,9 +29,11 @@ export default Footer
 
 const StyledWrapper = styled.div`
   a {
+    text-transform: uppercase;
     margin-top: 0.75rem;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     line-height: 1.25rem;
+    font-family: ${inter.style.fontFamily};
     color: ${({ theme }) => theme.colors.gray10};
   }
 `

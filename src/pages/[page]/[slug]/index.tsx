@@ -30,7 +30,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const feedPosts = filterPosts(posts)
   await queryClient.prefetchQuery(queryKey.posts(), () => feedPosts)
 
-  // 우선 category 안넘김
   const detailPosts = filterPosts(posts)
 
   const postDetail = detailPosts.find((t: any) => t.slug === slug)
