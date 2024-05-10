@@ -4,7 +4,7 @@ const CONFIG = {
     name: "Janine",
     image: "/profile.jpeg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
     role: "iOS Software Engineer",
-    bio: "그럼에도 불구하고 배움을 멈추지 않겠다 마음먹는 순간들이 진정한 성장이라고 생각합니다.",
+    bio: "지나간 파도는 잊어도 됩니다. 다음 파도에 잘 올라타기 위한 준비만 잘하면 됩니다.",
     email: "developerjanine@gmail.com",
     linkedin: "janine-kang",
     github: "janine-kang",
