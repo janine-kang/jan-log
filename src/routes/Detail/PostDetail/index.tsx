@@ -6,6 +6,7 @@ import Category from "src/components/Category"
 import styled from "@emotion/styled"
 import NotionRenderer from "../components/NotionRenderer"
 import usePostQuery from "src/hooks/usePostQuery"
+import { capitalizeFirstLetter } from "src/libs/utils"
 
 type Props = {}
 
@@ -14,7 +15,8 @@ const PostDetail: React.FC<Props> = () => {
 
   if (!data) return null
 
-  const section = (data.section && data.section?.[0]) || undefined
+  const section =
+    capitalizeFirstLetter(data.section && data.section?.[0]) || undefined
 
   return (
     <StyledWrapper>

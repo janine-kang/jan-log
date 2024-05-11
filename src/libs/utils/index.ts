@@ -8,3 +8,7 @@ export function formatDate(date: any, local: any = "en-US") {
   const res = d.toLocaleDateString(local, options)
   return res
 }
+
+export function capitalizeFirstLetter(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}
