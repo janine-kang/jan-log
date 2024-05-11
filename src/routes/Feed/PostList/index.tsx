@@ -1,28 +1,22 @@
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import PostCard from "src/routes/Feed/PostList/PostCard"
-import usePostsQuery from "src/hooks/usePostsQuery"
-import { TSection, TPost, toTSection } from "src/types"
+import { TSection, TPosts } from "src/types"
 
 type Props = {
+  posts: TPosts
   section?: TSection
 }
 
-const PostList: React.FC<Props> = ({ section }) => {
+const PostList: React.FC<Props> = ({ posts, section }) => {
   const router = useRouter()
-  const data = usePostsQuery()
-  const [filteredPosts, setFilteredPosts] = useState(data)
+  const [filteredPosts, setFilteredPosts] = useState(posts)
 
   const currentTag = `${router.query.tag || ``}` || undefined
 
   useEffect(() => {
     setFilteredPosts(() => {
-      let newFilteredPosts = data
-      if (section) {
-        newFilteredPosts = newFilteredPosts.filter(
-          (post) => toTSection(post.section[0]) === section
-        )
-      }
+      let newFilteredPosts = posts
 
       // tag
       if (currentTag) {

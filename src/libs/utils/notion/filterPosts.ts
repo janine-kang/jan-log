@@ -22,7 +22,7 @@ export function filterPosts(posts: TPosts, section?: TSection) {
         if (!section) {
           return true
         }
-        return toTSection(post.section) === section
+        return toTSection(post.section[0]) === section
       })
   )
 }
