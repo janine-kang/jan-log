@@ -1,4 +1,5 @@
-import { TSection, toTSection } from "src/types"
+import { TSection } from "src/types"
+import { toTSection } from "src/libs/utils"
 import PostList from "src/routes/Feed/PostList"
 import { GetServerSideProps } from "next"
 import styled from "@emotion/styled"

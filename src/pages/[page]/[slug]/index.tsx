@@ -1,7 +1,8 @@
 import Detail from "src/routes/Detail"
 import { filterPosts } from "src/libs/utils/notion"
 import { CONFIG } from "site.config"
-import { NextPageWithLayout, toTSection } from "../../../types"
+import { NextPageWithLayout } from "../../../types"
+import { toTSection } from "src/libs/utils"
 import CustomError from "src/routes/Error"
 import { getRecordMap, getPosts } from "src/apis"
 import MetaConfig from "src/components/MetaConfig"
@@ -10,7 +11,6 @@ import { queryClient } from "src/libs/react-query"
 import { queryKey } from "src/constants/queryKey"
 import { dehydrate } from "@tanstack/react-query"
 import usePostQuery from "src/hooks/usePostQuery"
-import { TSection } from "src/types"
 
 export const getStaticPaths = async () => {
   const posts = await getPosts()
@@ -59,14 +59,15 @@ const DetailPage: NextPageWithLayout = () => {
     `${CONFIG.ogImageGenerateURL}/${encodeURIComponent(post.title)}.png`
 
   const date = post.date?.start_date || post.createdTime || ""
+  const section = post.section[0]
 
   const meta = {
     title: post.title,
     date: new Date(date).toISOString(),
     image: image,
     description: post.summary || "",
-    section: toTSection(post.section),
-    url: `${CONFIG.link}/${post.section}/${post.slug}`,
+    section: toTSection(section),
+    url: `${CONFIG.link}/${section}/${post.slug}`,
   }
 
   return (

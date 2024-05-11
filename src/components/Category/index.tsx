@@ -1,21 +1,13 @@
 import { useRouter } from "next/router"
 import React from "react"
-import { COLOR_SET } from "./constants"
 import styled from "@emotion/styled"
 import { colors } from "src/styles"
 import { inter } from "src/assets"
+import { getSectionColor, toTSection } from "src/libs/utils"
 
 export const getColorClassByName = (name: string): string => {
-  try {
-    let sum = 0
-    name.split("").forEach((alphabet) => (sum = sum + alphabet.charCodeAt(0)))
-    const colorKey = sum
-      .toString(16)
-      ?.[sum.toString(16).length - 1].toUpperCase()
-    return COLOR_SET[colorKey]
-  } catch {
-    return COLOR_SET[0]
-  }
+  const section = toTSection(name.toLowerCase())
+  return getSectionColor(section)
 }
 
 type Props = {
@@ -23,19 +15,18 @@ type Props = {
   readOnly?: boolean
 }
 
-const Category: React.FC<Props> = ({ readOnly = false, children }) => {
+const Category: React.FC<Props> = ({ children }) => {
   const router = useRouter()
 
   const handleClick = (value: string) => {
-    if (readOnly) return
-    router.push(`/?category=${value.toLowerCase()}`)
+    router.push(`/${value.toLowerCase()}`)
   }
   return (
     <StyledWrapper
       onClick={() => handleClick(children)}
       css={{
         backgroundColor: getColorClassByName(children),
-        cursor: readOnly ? "default" : "pointer",
+        cursor: "pointer",
       }}
     >
       {children}

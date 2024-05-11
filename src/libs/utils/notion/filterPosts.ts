@@ -1,4 +1,5 @@
-import { TPosts, TSection, toTSection } from "src/types"
+import { TPosts, TSection } from "src/types"
+import { toTSection } from "src/libs/utils"
 
 const current = new Date()
 const tomorrow = new Date(current)

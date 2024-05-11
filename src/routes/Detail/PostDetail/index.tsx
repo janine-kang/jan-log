@@ -23,7 +23,7 @@ const PostDetail: React.FC<Props> = () => {
       <article>
         {section && (
           <div css={{ marginBottom: "0.5rem" }}>
-            <Category readOnly={data.published === "Yes"}>{section}</Category>
+            <Category>{section}</Category>
           </div>
         )}
         <PostHeader data={data} />

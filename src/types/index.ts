@@ -21,21 +21,6 @@ export enum TSection {
   none = "",
 }
 
-export function toTSection(key: string): TSection {
-  switch (key) {
-    case "archive":
-      return TSection.archive
-    case "books":
-      return TSection.books
-    case "journal":
-      return TSection.journal
-    case "work":
-      return TSection.work
-    default:
-      return TSection.none
-  }
-}
-
 export type TPost = {
   id: string
   date: { start_date: string }
@@ -71,3 +56,4 @@ export type TCategories = {
 }
 
 export type ThemeType = "dark" | "light"
+
