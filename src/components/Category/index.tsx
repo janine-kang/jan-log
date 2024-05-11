@@ -3,6 +3,7 @@ import React from "react"
 import { COLOR_SET } from "./constants"
 import styled from "@emotion/styled"
 import { colors } from "src/styles"
+import { inter } from "src/assets"
 
 export const getColorClassByName = (name: string): string => {
   try {
@@ -27,7 +28,7 @@ const Category: React.FC<Props> = ({ readOnly = false, children }) => {
 
   const handleClick = (value: string) => {
     if (readOnly) return
-    router.push(`/?category=${value}`)
+    router.push(`/?category=${value.toLowerCase()}`)
   }
   return (
     <StyledWrapper
@@ -53,4 +54,5 @@ const StyledWrapper = styled.div`
   line-height: 1.25rem;
   opacity: 0.9;
   color: ${colors.dark.gray1};
+  font-family: ${inter.style.fontFamily};
 `

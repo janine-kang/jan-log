@@ -56,7 +56,6 @@ type Props = {
 }
 
 const NotionRenderer: FC<Props> = ({ recordMap }) => {
-  const [scheme] = useScheme()
   return (
     <StyledWrapper>
       <_NotionRenderer
