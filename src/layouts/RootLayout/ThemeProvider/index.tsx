@@ -10,7 +10,6 @@ type Props = {
 export const ThemeProvider = ({ scheme, children }: Props) => {
   const theme = createTheme({
     scheme: "light",
-    // scheme: scheme === "light" ? "light" : "dark",
   })
 
   return (
