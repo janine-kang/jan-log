@@ -1,60 +1,67 @@
-import { TSection } from "src/types"
+import { TSection, toTSection } from "src/types"
 import PostList from "src/routes/Feed/PostList"
-import { GetStaticPaths, GetStaticProps } from "next"
+import { GetServerSideProps } from "next"
 import styled from "@emotion/styled"
 import { permanentMarker } from "src/assets"
+import { getPosts } from "src/apis"
+import { filterPosts } from "src/libs/utils/notion"
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const { page } = context.params!
-
+  const section = page ? toTSection(page as string) : undefined
+  let posts = filterPosts(await getPosts(), section)
   return {
-    props: { page },
+    props: {
+      posts,
+      section,
+    },
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = [
-    {
-      params: {
-        page: TSection.books,
-        description: "읽은 책들을 포스팅 하는 공간입니다.",
-      },
-    },
-    {
-      params: {
-        page: TSection.journal,
-        description: "가끔 드는 생각들을 나열하는 공간입니다.",
-      },
-    },
-    {
-      params: {
-        page: TSection.archive,
-        description: "직무에 관련된 지식을 쌓아두는 공간입니다.",
-      },
-    },
-    {
-      params: {
-        page: TSection.work,
-        description: "지금까지의 작업물을 정리한 공간입니다.",
-      },
-    },
-  ]
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const paths = [
+//     {
+//       params: {
+//         page: TSection.books,
+//         description: "읽은 책들을 포스팅 하는 공간입니다.",
+//       },
+//     },
+//     {
+//       params: {
+//         page: TSection.journal,
+//         description: "가끔 드는 생각들을 나열하는 공간입니다.",
+//       },
+//     },
+//     {
+//       params: {
+//         page: TSection.archive,
+//         description: "직무에 관련된 지식을 쌓아두는 공간입니다.",
+//       },
+//     },
+//     {
+//       params: {
+//         page: TSection.work,
+//         description: "지금까지의 작업물을 정리한 공간입니다.",
+//       },
+//     },
+//   ]
 
-  return { paths, fallback: false }
-}
+//   return { paths, fallback: false }
+// }
 
 type Props = {
-  page: TSection
+  posts: any[]
+  section: TSection
 }
 
-const MainPage: React.FC<Props> = ({ page }) => {
+const MainPage: React.FC<Props> = ({ posts, section }) => {
   return (
     <StyledWrapper>
       <div className="topic">
-        <p className="title">{page}</p>
+        <p className="title">{section}</p>
       </div>
       <div className="list">
-        <PostList section={page} />
+        <PostList section={section} posts={posts} />
       </div>
     </StyledWrapper>
   )

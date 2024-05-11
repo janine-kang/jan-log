@@ -3,16 +3,18 @@ import styled from "@emotion/styled"
 import TagList from "./Components/TagList"
 import MobileProfileCard from "./Components/MobileProfileCard"
 import ProfileCard from "./Components/ProfileCard"
-import ContactCard from "./Components/ContactCard"
 import PostList from "./PostList"
 import { FeedHeader } from "./FeedHeader"
 import { inter } from "src/assets"
+import usePostsQuery from "src/hooks/usePostsQuery"
 
 const HEADER_HEIGHT = 73
 
 type Props = {}
 
 const Feed: React.FC<Props> = () => {
+  const posts = usePostsQuery()
+
   return (
     <StyledWrapper>
       <div className="mid">
@@ -23,7 +25,7 @@ const Feed: React.FC<Props> = () => {
         </div>
         <div className="contents">
           <p className="time">more issues</p>
-          <PostList />
+          <PostList posts={posts} />
         </div>
         <div className="footer">
           <Footer />
