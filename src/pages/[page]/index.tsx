@@ -12,7 +12,9 @@ import { filterSection } from "src/libs/utils/notion/filterPosts"
 import { CONFIG } from "site.config"
 
 export async function getStaticPaths() {
-  const sections = Object.values(TSection)
+  const sections = Object.values(TSection).filter(
+    (section) => section !== TSection.about
+  )
   const paths = sections.map((section) => ({
     params: { page: section },
   }))
