@@ -18,7 +18,7 @@ export enum TSection {
   journal = "journal",
   work = "work",
   about = "about",
-  none = "",
+  all = "",
 }
 
 export type TPost = {
@@ -56,4 +56,3 @@ export type TCategories = {
 }
 
 export type ThemeType = "dark" | "light"
-

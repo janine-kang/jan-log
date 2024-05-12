@@ -1,16 +1,16 @@
 import styled from "@emotion/styled"
-import { GetServerSideProps } from "next"
+import { GetStaticProps } from "next"
 
 import { CONFIG } from "site.config"
 import { getRecordMap } from "src/apis"
-import { noto, permanentMarker } from "src/assets/fonts"
+import { permanentMarker } from "src/assets/fonts"
 import NotionRenderer from "src/routes/Detail/components/NotionRenderer"
 
 type Props = {
-  recordMap: any // Adjust the type according to your data structure
+  recordMap: any
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const id = CONFIG.notionConfig.aboutId as string
   const recordMap = await getRecordMap(id)
 
@@ -18,6 +18,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
     props: {
       recordMap,
     },
+    revalidate: CONFIG.revalidatePostTime,
   }
 }
 

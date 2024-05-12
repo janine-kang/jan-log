@@ -1,7 +1,7 @@
 import Detail from "src/routes/Detail"
 import { filterPosts } from "src/libs/utils/notion"
 import { CONFIG } from "site.config"
-import { NextPageWithLayout } from "../../../types"
+import { NextPageWithLayout, TPosts } from "../../../types"
 import { toTSection } from "src/libs/utils"
 import CustomError from "src/routes/Error"
 import { getRecordMap, getPosts } from "src/apis"
@@ -13,12 +13,15 @@ import { dehydrate } from "@tanstack/react-query"
 import usePostQuery from "src/hooks/usePostQuery"
 
 export const getStaticPaths = async () => {
-  const posts = await getPosts()
-  /// all post
-  const filteredPost = filterPosts(posts)
+  let posts = queryClient.getQueryData(queryKey.posts()) as TPosts
+
+  if (!posts) {
+    posts = filterPosts(await getPosts())
+    await queryClient.prefetchQuery(queryKey.posts(), () => posts)
+  }
 
   return {
-    paths: filteredPost.map((row) => `/${row.section}/${row.slug ?? "all"}`),
+    paths: posts.map((row) => `/${row.section}/${row.slug ?? ""}`),
     fallback: true,
   }
 }
@@ -44,7 +47,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
-    revalidate: CONFIG.revalidateTime,
+    revalidate: CONFIG.revalidatePostTime,
   }
 }
 

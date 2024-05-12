@@ -6,7 +6,7 @@ const tomorrow = new Date(current)
 tomorrow.setDate(tomorrow.getDate() + 1)
 tomorrow.setHours(0, 0, 0, 0)
 
-export function filterPosts(posts: TPosts, section?: TSection) {
+export function filterPosts(posts: TPosts) {
   return (
     posts
       // filter data
@@ -18,12 +18,10 @@ export function filterPosts(posts: TPosts, section?: TSection) {
       })
       // filter status
       .filter((post) => post.published === "Yes")
-      // filter section
-      .filter((post) => {
-        if (!section) {
-          return true
-        }
-        return toTSection(post.section[0]) === section
-      })
+    // filter section
   )
+}
+
+export function filterSection(posts: TPosts, section: TSection) {
+  return posts.filter((post) => toTSection(post.section[0]) === section)
 }

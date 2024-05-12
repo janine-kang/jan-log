@@ -1,12 +1,9 @@
 import Link from "next/link"
-import { CONFIG } from "site.config"
 import { formatDate } from "src/libs/utils"
 import Tag from "../../../components/Tag"
 import { TPost } from "../../../types"
-import Image from "next/image"
 import styled from "@emotion/styled"
 import { inter } from "src/assets"
-import { useRouter } from "next/router"
 
 type Props = {
   data: TPost
