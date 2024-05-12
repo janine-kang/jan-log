@@ -27,7 +27,7 @@ export function toTSection(key: string): TSection {
     case "work":
       return TSection.work
     default:
-      return TSection.none
+      return TSection.all
   }
 }
 
