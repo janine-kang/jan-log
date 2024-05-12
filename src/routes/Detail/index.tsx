@@ -1,6 +1,5 @@
 import useMermaidEffect from "./hooks/useMermaidEffect"
 import PostDetail from "./PostDetail"
-import PageDetail from "./PageDetail"
 import styled from "@emotion/styled"
 import usePostQuery from "src/hooks/usePostQuery"
 

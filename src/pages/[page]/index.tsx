@@ -1,7 +1,7 @@
 import { TPosts, TSection } from "src/types"
 import { toTSection } from "src/libs/utils"
 import PostList from "src/routes/Feed/PostList"
-import { GetServerSideProps } from "next"
+import { GetStaticProps } from "next"
 import styled from "@emotion/styled"
 import { permanentMarker } from "src/assets"
 import { getPosts } from "src/apis"
@@ -9,8 +9,21 @@ import { filterPosts } from "src/libs/utils/notion"
 import { queryClient } from "src/libs/react-query"
 import { queryKey } from "src/constants/queryKey"
 import { filterSection } from "src/libs/utils/notion/filterPosts"
+import { CONFIG } from "site.config"
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export async function getStaticPaths() {
+  const sections = Object.values(TSection)
+  const paths = sections.map((section) => ({
+    params: { page: section },
+  }))
+
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
   const { page } = context.params!
   const section = page ? toTSection(page as string) : TSection.all
   let posts = queryClient.getQueryData(queryKey.posts())
@@ -26,9 +39,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      posts: posts,
+      posts,
       section,
     },
+    revalidate: CONFIG.revalidateListTime,
   }
 }
 
