@@ -13,7 +13,7 @@ import { CONFIG } from "site.config"
 
 export async function getStaticPaths() {
   const sections = Object.values(TSection).filter(
-    (section) => section !== TSection.about
+    (section) => section !== TSection.about && section !== TSection.all
   )
   const paths = sections.map((section) => ({
     params: { page: section },
