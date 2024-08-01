@@ -1,10 +1,7 @@
-import { CONFIG } from "site.config"
-import { NotionAPI } from "notion-client"
-import { idToUuid } from "notion-utils"
-
 import getAllPageIds from "src/libs/utils/notion/getAllPageIds"
 import getPageProperties from "src/libs/utils/notion/getPageProperties"
 import { TPosts } from "src/types"
+import { getCollections } from "./getCollections"
 
 /**
  * @param {{ includePages: boolean }} - false: posts only / true: include pages
@@ -12,31 +9,31 @@ import { TPosts } from "src/types"
 
 // TODO: react query를 사용해서 처음 불러온 뒤로는 해당데이터만 사용하도록 수정
 export const getPosts = async () => {
-  let id = CONFIG.notionConfig.pageId as string
-  const api = new NotionAPI()
-
-  const response = await api.getPage(id)
-  id = idToUuid(id)
-  const collection = Object.values(response.collection)[0]?.value
-  const block = response.block
-  const schema = collection?.schema
-
-  const rawMetadata = block[id].value
-
-  // Check Type
-  if (
-    rawMetadata?.type !== "collection_view_page" &&
-    rawMetadata?.type !== "collection_view"
-  ) {
-    return []
-  }
+  const response = await getCollections()
 
   // Construct Data
   const pageIds = getAllPageIds(response)
-  const data = []
+  const block = response.recordMap.block
+
+  const collection = response.recordMap.collection ?? undefined
+
+  const collectionKey = collection ? Object.keys(collection)[0] : undefined
+
+  const schema =
+    collection && collectionKey
+      ? collection[collectionKey].value.schema
+      : undefined
+
+  console.log("🐢 pageIds: ", pageIds)
+  // console.log("🐢 schema: ", schema)
+
+  let data = []
+
   for (let i = 0; i < pageIds.length; i++) {
     const id = pageIds[i]
+
     const properties = (await getPageProperties(id, block, schema)) || null
+
     // Add fullwidth, createdtime to properties
     properties.createdTime = new Date(block[id].value?.created_time).toString()
     properties.fullWidth =

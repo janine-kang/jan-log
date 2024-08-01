@@ -3,18 +3,53 @@ import { NotionAPI } from "notion-client"
 import { BlockMap, CollectionPropertySchemaMap } from "notion-types"
 import { customMapImageUrl } from "./customMapImageUrl"
 
+// 각 Contents 값 통신해오는 부분으로 추정
 async function getPageProperties(
   id: string,
   block: BlockMap,
-  schema: CollectionPropertySchemaMap
+  schema: CollectionPropertySchemaMap | undefined
 ) {
+  if (!schema) {
+    return undefined
+  }
+
   const api = new NotionAPI()
   const rawProperties = Object.entries(block?.[id]?.value?.properties || [])
+
+  /**
+   * 🐯 rawProperties [
+   * * 🐯 rawProperties [
+   * * 🐯 rawProperties [
+  [ 'NX\\Q', [ [Array] ] ],
+  [ 'WxpT', [ [Array] ] ],
+  [ 'Xvje', [ [Array] ] ],
+  [ '`gQ~', [ [Array] ] ],
+  [ 'd]hq', [ [Array] ] ],
+  [ 'ppED', [ [Array] ] ],
+  [ 'sD^m', [ [Array] ] ],
+  [ 'wz|S', [ [Array] ] ],
+  [ '~rC=', [ [Array] ] ],
+  [ 'title', [ [Array] ] ],
+  [ 'f211bdc0-ee00-4186-9a7d-f68c055ec2ee', [ [Array] ] ]
+]
+   */
+
   const excludeProperties = ["date", "select", "multi_select", "person", "file"]
   const properties: any = {}
+
+  // rawProperties 크기만큼 돌아감
   for (let i = 0; i < rawProperties.length; i++) {
     const [key, val]: any = rawProperties[i]
+
     properties.id = id
+
+    // if (i == 0) {
+    //   console.log("🐯 rawProperties: ", rawProperties, "rawProperties end 🐯")
+    //   console.log("🐯 id: ", id, "id end 🐯")
+    //   // console.log("🐯 block: ", block, "block end 🐯")
+    //   console.log("🐯 schema: ", schema, "schema end 🐯")
+    // }
+
     if (schema[key]?.type && !excludeProperties.includes(schema[key].type)) {
       properties[schema[key].name] = getTextContent(val)
     } else {
@@ -79,6 +114,7 @@ async function getPageProperties(
       }
     }
   }
+
   return properties
 }
 
