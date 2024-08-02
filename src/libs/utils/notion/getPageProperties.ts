@@ -16,24 +16,6 @@ async function getPageProperties(
   const api = new NotionAPI()
   const rawProperties = Object.entries(block?.[id]?.value?.properties || [])
 
-  /**
-   * 🐯 rawProperties [
-   * * 🐯 rawProperties [
-   * * 🐯 rawProperties [
-  [ 'NX\\Q', [ [Array] ] ],
-  [ 'WxpT', [ [Array] ] ],
-  [ 'Xvje', [ [Array] ] ],
-  [ '`gQ~', [ [Array] ] ],
-  [ 'd]hq', [ [Array] ] ],
-  [ 'ppED', [ [Array] ] ],
-  [ 'sD^m', [ [Array] ] ],
-  [ 'wz|S', [ [Array] ] ],
-  [ '~rC=', [ [Array] ] ],
-  [ 'title', [ [Array] ] ],
-  [ 'f211bdc0-ee00-4186-9a7d-f68c055ec2ee', [ [Array] ] ]
-]
-   */
-
   const excludeProperties = ["date", "select", "multi_select", "person", "file"]
   const properties: any = {}
 
@@ -42,13 +24,6 @@ async function getPageProperties(
     const [key, val]: any = rawProperties[i]
 
     properties.id = id
-
-    // if (i == 0) {
-    //   console.log("🐯 rawProperties: ", rawProperties, "rawProperties end 🐯")
-    //   console.log("🐯 id: ", id, "id end 🐯")
-    //   // console.log("🐯 block: ", block, "block end 🐯")
-    //   console.log("🐯 schema: ", schema, "schema end 🐯")
-    // }
 
     if (schema[key]?.type && !excludeProperties.includes(schema[key].type)) {
       properties[schema[key].name] = getTextContent(val)

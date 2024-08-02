@@ -1,37 +1,28 @@
 import getAllPageIds from "src/libs/utils/notion/getAllPageIds"
 import getPageProperties from "src/libs/utils/notion/getPageProperties"
 import { TPosts } from "src/types"
-import { getCollections } from "./getCollections"
+import { getCollectionData } from "./getCollectionData"
+import { getCollectionKey } from "./getCollectionConfigs"
 
 /**
  * @param {{ includePages: boolean }} - false: posts only / true: include pages
  */
 
-// TODO: react query를 사용해서 처음 불러온 뒤로는 해당데이터만 사용하도록 수정
 export const getPosts = async () => {
-  const response = await getCollections()
+  const response = await getCollectionData()
 
   // Construct Data
   const pageIds = getAllPageIds(response)
   const block = response.recordMap.block
 
   const collection = response.recordMap.collection ?? undefined
+  const collectionKey = getCollectionKey()
 
-  const collectionKey = collection ? Object.keys(collection)[0] : undefined
-
-  const schema =
-    collection && collectionKey
-      ? collection[collectionKey].value.schema
-      : undefined
-
-  console.log("🐢 pageIds: ", pageIds)
-  // console.log("🐢 schema: ", schema)
+  const schema = collection ? collection[collectionKey].value.schema : undefined
 
   let data = []
 
-  for (let i = 0; i < pageIds.length; i++) {
-    const id = pageIds[i]
-
+  for (const id of pageIds) {
     const properties = (await getPageProperties(id, block, schema)) || null
 
     // Add fullwidth, createdtime to properties

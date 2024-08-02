@@ -12,13 +12,15 @@ export function filterPosts(posts: TPosts) {
       // filter data
       .filter((post) => {
         const postDate = new Date(post?.date?.start_date || post.createdTime)
-        if (!post.title || !post.slug || !post.section || postDate > tomorrow)
-          return false
-        return true
+        return !(
+          !post.title ||
+          !post.slug ||
+          !post.section ||
+          postDate > tomorrow
+        )
       })
       // filter status
       .filter((post) => post.published === "Yes")
-    // filter section
   )
 }
 
