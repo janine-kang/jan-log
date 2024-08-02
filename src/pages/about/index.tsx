@@ -53,10 +53,10 @@ const StyledWrapper = styled.div`
   .notion-text {
     font-size: 1.1rem;
     word-break: keep-all !important;
-    line-height: 1.5;
+    line-height: 1.2;
     letter-spacing: -0.2px;
-    padding: 5px 2px !important;
-    margin: 4px 0 !important;
+    padding: 0px 2px !important;
+    margin: 2px 0 !important;
   }
 
   .notion-link {

@@ -3,18 +3,28 @@ import { NotionAPI } from "notion-client"
 import { BlockMap, CollectionPropertySchemaMap } from "notion-types"
 import { customMapImageUrl } from "./customMapImageUrl"
 
+// 각 Contents 값 통신해오는 부분으로 추정
 async function getPageProperties(
   id: string,
   block: BlockMap,
-  schema: CollectionPropertySchemaMap
+  schema: CollectionPropertySchemaMap | undefined
 ) {
+  if (!schema) {
+    return undefined
+  }
+
   const api = new NotionAPI()
   const rawProperties = Object.entries(block?.[id]?.value?.properties || [])
+
   const excludeProperties = ["date", "select", "multi_select", "person", "file"]
   const properties: any = {}
+
+  // rawProperties 크기만큼 돌아감
   for (let i = 0; i < rawProperties.length; i++) {
     const [key, val]: any = rawProperties[i]
+
     properties.id = id
+
     if (schema[key]?.type && !excludeProperties.includes(schema[key].type)) {
       properties[schema[key].name] = getTextContent(val)
     } else {
@@ -79,6 +89,7 @@ async function getPageProperties(
       }
     }
   }
+
   return properties
 }
 
