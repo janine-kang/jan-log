@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { formatDate } from "src/libs/utils"
-import Tag from "../../../components/Tag"
+import Tag from "../../../general/components/Tag"
 import { TPost } from "../../../types"
 import styled from "@emotion/styled"
 import { inter } from "src/assets"

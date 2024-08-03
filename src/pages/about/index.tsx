@@ -2,7 +2,11 @@ import styled from "@emotion/styled"
 import { GetStaticProps } from "next"
 
 import { permanentMarker } from "src/assets/fonts"
-import { getAboutPageKey, getRevalidationTime } from "src/general"
+import {
+  getAboutPageKey,
+  getRevalidationTime,
+  RevalidationType,
+} from "src/general"
 import { getRecordMap } from "src/libs/notion-client"
 import NotionRenderer from "src/routes/Detail/components/NotionRenderer"
 
@@ -18,7 +22,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     props: {
       recordMap,
     },
-    revalidate: getRevalidationTime(),
+    revalidate: getRevalidationTime(RevalidationType.post),
   }
 }
 

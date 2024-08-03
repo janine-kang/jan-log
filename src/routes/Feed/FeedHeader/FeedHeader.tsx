@@ -3,7 +3,7 @@ import { formatDate } from "src/libs/utils"
 import styled from "@emotion/styled"
 import { inter } from "src/assets"
 import Link from "next/link"
-import Tag from "src/components/Tag"
+import Tag from "src/general/components/Tag"
 import usePostsQuery from "src/general/hooks/usePostsQuery"
 import { TPost } from "src/types"
 

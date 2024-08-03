@@ -1,5 +1,5 @@
 import { CONFIG } from "site.config"
-import Tag from "src/components/Tag"
+import Tag from "src/general/components/Tag"
 import { TPost } from "src/types"
 import { formatDate } from "src/libs/utils"
 import Image from "next/image"

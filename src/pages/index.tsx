@@ -2,12 +2,13 @@ import Feed from "src/routes/Feed"
 import { CONFIG } from "../../site.config"
 import { NextPageWithLayout } from "../types"
 import { getPosts } from "src/libs/notion-client"
-import MetaConfig from "src/components/MetaConfig"
+import MetaConfig from "src/general/components/MetaConfig"
 import { queryClient } from "src/libs/react-query"
 import { queryKey } from "src/general/constants/queryKey"
 import { GetStaticProps } from "next"
 import { dehydrate } from "@tanstack/react-query"
 import { filterPosts } from "src/libs/utils/notion"
+import { getRevalidationTime, RevalidationType } from "src/general"
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = filterPosts(await getPosts())
@@ -17,7 +18,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
-    revalidate: CONFIG.revalidateListTime,
+    revalidate: getRevalidationTime(RevalidationType.list),
   }
 }
 

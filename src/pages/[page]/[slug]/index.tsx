@@ -5,7 +5,7 @@ import { NextPageWithLayout, TPosts } from "../../../types"
 import { toTSection } from "src/libs/utils"
 import CustomError from "src/routes/Error"
 
-import MetaConfig from "src/components/MetaConfig"
+import MetaConfig from "src/general/components/MetaConfig"
 import { GetStaticProps } from "next"
 import { queryClient } from "src/libs/react-query"
 import { queryKey } from "src/general/constants/queryKey"

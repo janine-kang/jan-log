@@ -8,8 +8,8 @@ import { filterPosts } from "src/libs/utils/notion"
 import { queryClient } from "src/libs/react-query"
 import { queryKey } from "src/general/constants/queryKey"
 import { filterSection } from "src/libs/utils/notion/filterPosts"
-import { CONFIG } from "site.config"
 import { getPosts } from "src/libs/notion-client"
+import { getRevalidationTime, RevalidationType } from "src/general"
 
 export async function getStaticPaths() {
   const sections = Object.values(TSection).filter(
@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       posts,
       section,
     },
-    revalidate: CONFIG.revalidateListTime,
+    revalidate: getRevalidationTime(RevalidationType.list),
   }
 }
 
@@ -53,6 +53,7 @@ type Props = {
   section: TSection
 }
 
+//
 const MainPage: React.FC<Props> = ({ section, posts }) => {
   return (
     <StyledWrapper>

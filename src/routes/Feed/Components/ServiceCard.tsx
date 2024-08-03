@@ -2,7 +2,7 @@ import { CONFIG } from "site.config"
 import React from "react"
 import { AiFillCodeSandboxCircle } from "react-icons/ai"
 import styled from "@emotion/styled"
-import { Emoji } from "src/components/Emoji"
+import { Emoji } from "src/general/components/Emoji"
 
 const ServiceCard: React.FC = () => {
   if (!CONFIG.projects) return null

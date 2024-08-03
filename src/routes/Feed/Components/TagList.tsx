@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import { useRouter } from "next/router"
 import React from "react"
-import { Emoji } from "src/components/Emoji"
+import { Emoji } from "src/general/components/Emoji"
 import { useTagsQuery } from "src/general/hooks/useTagsQuery"
 
 type Props = {}
