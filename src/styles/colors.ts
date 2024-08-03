@@ -36,6 +36,7 @@ export const colors = {
     ...pink,
     ...cyan,
     ...purple,
+    ...orange,
     ...amber,
   },
   dark: {
@@ -48,6 +49,7 @@ export const colors = {
     ...pinkDark,
     ...cyanDark,
     ...purpleDark,
+    ...orangeDark,
     ...amberDark,
   },
 }

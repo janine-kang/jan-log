@@ -4,7 +4,7 @@ import styled from "@emotion/styled"
 import { inter } from "src/assets"
 import Link from "next/link"
 import Tag from "src/components/Tag"
-import usePostsQuery from "src/hooks/usePostsQuery"
+import usePostsQuery from "src/general/hooks/usePostsQuery"
 import { TPost } from "src/types"
 
 const PostListHeader: React.FC = () => {

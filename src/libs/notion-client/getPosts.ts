@@ -2,7 +2,7 @@ import getAllPageIds from "src/libs/utils/notion/getAllPageIds"
 import getPageProperties from "src/libs/utils/notion/getPageProperties"
 import { TPosts } from "src/types"
 import { getCollectionData } from "./getCollectionData"
-import { getCollectionKey } from "./getCollectionConfigs"
+import { getCollectionKey } from "../../general/configs"
 
 /**
  * @param {{ includePages: boolean }} - false: posts only / true: include pages

@@ -6,7 +6,7 @@ import ProfileCard from "./Components/ProfileCard"
 import PostList from "./PostList"
 import { FeedHeader } from "./FeedHeader"
 import { inter } from "src/assets"
-import usePostsQuery from "src/hooks/usePostsQuery"
+import usePostsQuery from "src/general/hooks/usePostsQuery"
 
 const HEADER_HEIGHT = 73
 

@@ -4,13 +4,14 @@ import { CONFIG } from "site.config"
 import { NextPageWithLayout, TPosts } from "../../../types"
 import { toTSection } from "src/libs/utils"
 import CustomError from "src/routes/Error"
-import { getRecordMap, getPosts } from "src/apis"
+
 import MetaConfig from "src/components/MetaConfig"
 import { GetStaticProps } from "next"
 import { queryClient } from "src/libs/react-query"
-import { queryKey } from "src/constants/queryKey"
+import { queryKey } from "src/general/constants/queryKey"
 import { dehydrate } from "@tanstack/react-query"
-import usePostQuery from "src/hooks/usePostQuery"
+import usePostQuery from "src/general/hooks/usePostQuery"
+import { getPosts, getRecordMap } from "src/libs/notion-client"
 
 export const getStaticPaths = async () => {
   let posts = queryClient.getQueryData(queryKey.posts()) as TPosts

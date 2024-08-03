@@ -1,9 +1,9 @@
 import styled from "@emotion/styled"
 import { GetStaticProps } from "next"
 
-import { CONFIG } from "site.config"
-import { getRecordMap } from "src/apis"
 import { permanentMarker } from "src/assets/fonts"
+import { getAboutPageKey, getRevalidationTime } from "src/general"
+import { getRecordMap } from "src/libs/notion-client"
 import NotionRenderer from "src/routes/Detail/components/NotionRenderer"
 
 type Props = {
@@ -11,14 +11,14 @@ type Props = {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const id = CONFIG.notionConfig.aboutId as string
+  const id = getAboutPageKey()
   const recordMap = await getRecordMap(id)
 
   return {
     props: {
       recordMap,
     },
-    revalidate: CONFIG.revalidatePostTime,
+    revalidate: getRevalidationTime(),
   }
 }
 

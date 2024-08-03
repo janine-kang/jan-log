@@ -4,12 +4,12 @@ import PostList from "src/routes/Feed/PostList"
 import { GetStaticProps } from "next"
 import styled from "@emotion/styled"
 import { permanentMarker } from "src/assets"
-import { getPosts } from "src/apis"
 import { filterPosts } from "src/libs/utils/notion"
 import { queryClient } from "src/libs/react-query"
-import { queryKey } from "src/constants/queryKey"
+import { queryKey } from "src/general/constants/queryKey"
 import { filterSection } from "src/libs/utils/notion/filterPosts"
 import { CONFIG } from "site.config"
+import { getPosts } from "src/libs/notion-client"
 
 export async function getStaticPaths() {
   const sections = Object.values(TSection).filter(

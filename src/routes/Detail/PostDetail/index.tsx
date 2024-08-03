@@ -5,7 +5,7 @@ import CommentBox from "./CommentBox"
 import Category from "src/components/Category"
 import styled from "@emotion/styled"
 import NotionRenderer from "../components/NotionRenderer"
-import usePostQuery from "src/hooks/usePostQuery"
+import usePostQuery from "src/general/hooks/usePostQuery"
 import { capitalizeFirstLetter } from "src/libs/utils"
 
 type Props = {}
@@ -23,7 +23,7 @@ const PostDetail: React.FC<Props> = () => {
       <article>
         {section && (
           <div css={{ marginBottom: "0.5rem" }}>
-            <Category>{section}</Category>
+            {/* <Category>{section}</Category> */}
           </div>
         )}
         <PostHeader data={data} />

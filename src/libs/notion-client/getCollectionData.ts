@@ -1,5 +1,5 @@
 import { NotionAPI } from "notion-client"
-import { getCollectionKey, getCollectionViewKey } from "./getCollectionConfigs"
+import { getCollectionKey, getCollectionViewKey } from "src/general"
 
 export const getCollectionData = async () => {
   const collectionId = getCollectionKey()
