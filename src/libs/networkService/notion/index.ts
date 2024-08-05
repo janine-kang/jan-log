@@ -1,0 +1,1 @@
+export { filterPosts } from "./filterPosts"

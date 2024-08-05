@@ -7,6 +7,11 @@ import { queryKey } from "src/general/constants/queryKey"
 import { getRevalidationTime, RevalidationConfigType } from "src/general"
 import { getPosts } from "src/libs/networkService"
 import PostList from "src/routes/PostList"
+import TagList from "src/routes/Tags/TagList"
+import useTagList from "src/general/hooks/useTagList"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
 
 export async function getStaticPaths() {
   const sections = Object.values(TSection).filter(
@@ -46,13 +51,32 @@ type Props = {
 }
 
 const MainPage: React.FC<Props> = ({ section, posts }) => {
+  const params = useRouter().asPath.split("?tag=")[1]
+  const tags = useTagList(posts)
+  const tagList = Object.keys(tags)
+
+  const [postList, setPostList] = useState(posts)
+
+  useEffect(() => {
+    if (params) {
+      const filtered = tags[params]
+      setPostList(filtered)
+    } else {
+      setPostList(posts)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params, posts])
+
   return (
     <StyledWrapper>
       <div className="topic">
-        <p className="title">{section}</p>
+        <Link href={`/${section}`} className="title">
+          {section}
+        </Link>
+        {tagList && <TagList tagList={tagList} />}
       </div>
       <div className="list">
-        <PostList posts={posts} />
+        <PostList posts={postList} />
       </div>
     </StyledWrapper>
   )

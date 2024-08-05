@@ -6,7 +6,7 @@ import styled from "@emotion/styled"
 import NotionRenderer from "../components/NotionRenderer"
 import usePostQuery from "src/general/hooks/usePostQuery"
 import { capitalizeFirstLetter } from "src/libs/utils"
-import Category from "src/general/components/Category"
+import Category from "src/routes/Detail/components/Category"
 
 type Props = {}
 

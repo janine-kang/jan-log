@@ -1,11 +1,15 @@
-import { CONFIG } from "site.config"
-import Tag from "src/general/components/Tag"
 import { TPost } from "src/types"
 import { formatDate } from "src/libs/utils"
 import Image from "next/image"
 import React from "react"
 import styled from "@emotion/styled"
-import { getBlogSettings, BlogConfigType } from "src/general"
+import {
+  getBlogSettings,
+  BlogConfigType,
+  getUserProfile,
+  ProfileConfigType,
+} from "src/general"
+import Tag from "src/routes/Tags/Tag"
 
 type Props = {
   data: TPost
@@ -22,7 +26,10 @@ const PostHeader: React.FC<Props> = ({ data }) => {
               <div className="author">
                 <Image
                   css={{ borderRadius: "50%" }}
-                  src={data.author[0].profile_photo || CONFIG.profile.image}
+                  src={
+                    data.author[0].profile_photo ||
+                    getUserProfile(ProfileConfigType.image)
+                  }
                   alt="profile_photo"
                   width={24}
                   height={24}
