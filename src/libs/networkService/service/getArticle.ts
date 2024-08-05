@@ -9,7 +9,7 @@ export const getArticle = async (target?: TPost) => {
   }
 
   const block = await getBlockData(target.id)
-  await queryClient.prefetchQuery(queryKey.post(`${target.id}`), () => ({
+  await queryClient.prefetchQuery(queryKey.post(`${target.slug}`), () => ({
     ...target,
     block,
   }))
