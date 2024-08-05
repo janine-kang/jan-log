@@ -16,26 +16,31 @@ type Props = {}
 const Home: React.FC<Props> = () => {
   const list = usePostsQuery()
 
-  let headlines: TPosts = []
+  let hasPinned = true
+  let pinnedPosts: TPosts = []
   let posts: TPosts = []
 
   list.forEach((post) => {
     if (!post.pinned || post.pinned === "No") {
       posts.push(post)
     } else {
-      headlines.push(post)
+      pinnedPosts.push(post)
     }
   })
+
+  if (pinnedPosts.length === 0) {
+    hasPinned = false
+    pinnedPosts = posts.slice(0, 2)
+    posts = posts.slice(2)
+  }
 
   return (
     <StyledWrapper>
       <div className="mid">
         <MobileProfileCard />
         <HomeHeader
-          headlines={
-            headlines.length === 0 ? posts.slice(0, 3) : (headlines as TPosts)
-          }
-          type={headlines.length === 0 ? "latest" : "pinned"}
+          headlines={pinnedPosts}
+          type={hasPinned ? "pinned" : "latest"}
         />
         <div className="contents">
           <p className="time">more issues</p>
