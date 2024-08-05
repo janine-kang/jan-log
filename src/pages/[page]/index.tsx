@@ -8,10 +8,10 @@ import { getRevalidationTime, RevalidationConfigType } from "src/general"
 import { getPosts } from "src/libs/networkService"
 import PostList from "src/routes/PostList"
 import TagList from "src/routes/Tags/TagList"
-import useTagList from "src/general/hooks/useTagList"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import filterByTags from "src/libs/networkService/notion/filterByTags"
 
 export async function getStaticPaths() {
   const sections = Object.values(TSection).filter(
@@ -51,14 +51,13 @@ type Props = {
 }
 
 const MainPage: React.FC<Props> = ({ section, posts }) => {
-  const params = useRouter().asPath.split("?tag=")[1]
-  const tags = useTagList(posts)
-  const tagList = Object.keys(tags)
-
   const [postList, setPostList] = useState(posts)
+  const params = useRouter().asPath.split("?tag=")[1]
+  const tags = filterByTags(posts)
+  const tagList = tags && Object.keys(tags)
 
   useEffect(() => {
-    if (params) {
+    if (params && tags) {
       const filtered = tags[params]
       setPostList(filtered)
     } else {

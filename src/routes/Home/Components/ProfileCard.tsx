@@ -15,7 +15,12 @@ const ProfileCard: React.FC<Props> = () => {
       <div className="content">
         <div className="title">about me</div>
         <div className="top">
-          <Image src={getUserProfile(ProfileConfigType.image)} fill alt="" />
+          <Image
+            src={getUserProfile(ProfileConfigType.image)}
+            fill
+            alt=""
+            fetchPriority="auto"
+          />
         </div>
         <div className="mid">
           <div className="name">{getUserProfile(ProfileConfigType.name)}</div>

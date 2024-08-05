@@ -37,7 +37,6 @@ const Home: React.FC<Props> = () => {
   return (
     <StyledWrapper>
       <div className="mid">
-        <MobileProfileCard />
         <HomeHeader
           headlines={pinnedPosts}
           type={hasPinned ? "pinned" : "latest"}

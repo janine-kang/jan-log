@@ -1,6 +1,10 @@
 import { TPosts } from "src/types"
 
-const useTagList = (posts: TPosts) => {
+const filterByTags = (posts?: TPosts) => {
+  if (!posts) {
+    return
+  }
+
   let list: { [key: string]: TPosts } = {}
 
   for (const post of posts) {
@@ -19,4 +23,4 @@ const useTagList = (posts: TPosts) => {
   return list
 }
 
-export default useTagList
+export default filterByTags
