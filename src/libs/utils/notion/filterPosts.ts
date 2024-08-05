@@ -21,6 +21,11 @@ export function filterPosts(posts: TPosts) {
       })
       // filter status
       .filter((post) => post.published === "Yes")
+      .sort((a: any, b: any) => {
+        const dateA: any = new Date(a?.date?.start_date || a.createdTime)
+        const dateB: any = new Date(b?.date?.start_date || b.createdTime)
+        return dateB - dateA
+      })
   )
 }
 

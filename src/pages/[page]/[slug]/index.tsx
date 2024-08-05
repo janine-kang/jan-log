@@ -1,5 +1,4 @@
 import Detail from "src/routes/Detail"
-import { filterPosts } from "src/libs/utils/notion"
 import { CONFIG } from "site.config"
 import { NextPageWithLayout, TPosts } from "../../../types"
 import { toTSection } from "src/libs/utils"
@@ -11,32 +10,33 @@ import { queryClient } from "src/libs/react-query"
 import { queryKey } from "src/general/constants/queryKey"
 import { dehydrate } from "@tanstack/react-query"
 import usePostQuery from "src/general/hooks/usePostQuery"
-import { getPosts, getRecordMap } from "src/libs/notion-client"
+import { getPosts, getRecordMap } from "src/libs/networkService"
 
 export const getStaticPaths = async () => {
   let posts = queryClient.getQueryData(queryKey.posts()) as TPosts
 
   if (!posts) {
-    posts = filterPosts(await getPosts())
-    await queryClient.prefetchQuery(queryKey.posts(), () => posts)
+    await getPosts()
+    posts = queryClient.getQueryData(queryKey.posts()) as TPosts
   }
 
   return {
-    paths: posts.map((row) => `/${row.section}/${row.slug ?? ""}`),
+    paths: posts.map((post) => `/${post.section}/${post.slug}`),
     fallback: true,
   }
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context.params?.slug
+  let posts = queryClient.getQueryData(queryKey.posts()) as TPosts
 
-  const posts = await getPosts()
-  const feedPosts = filterPosts(posts)
-  await queryClient.prefetchQuery(queryKey.posts(), () => feedPosts)
+  if (!posts) {
+    await getPosts()
+    posts = queryClient.getQueryData(queryKey.posts()) as TPosts
+  }
 
-  const detailPosts = filterPosts(posts)
-
-  const postDetail = detailPosts.find((t: any) => t.slug === slug)
+  const postDetail = posts.find((t: any) => t.slug === slug)
+  // TODO: - 통신 줄이기
   const recordMap = await getRecordMap(postDetail?.id!)
 
   await queryClient.prefetchQuery(queryKey.post(`${slug}`), () => ({

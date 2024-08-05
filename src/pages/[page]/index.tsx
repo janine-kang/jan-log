@@ -1,15 +1,12 @@
 import { TPosts, TSection } from "src/types"
-import { toTSection } from "src/libs/utils"
 import PostList from "src/routes/Feed/PostList"
 import { GetStaticProps } from "next"
 import styled from "@emotion/styled"
 import { permanentMarker } from "src/assets"
-import { filterPosts } from "src/libs/utils/notion"
 import { queryClient } from "src/libs/react-query"
 import { queryKey } from "src/general/constants/queryKey"
-import { filterSection } from "src/libs/utils/notion/filterPosts"
-import { getPosts } from "src/libs/notion-client"
 import { getRevalidationTime, RevalidationType } from "src/general"
+import { getPosts } from "src/libs/networkService"
 
 export async function getStaticPaths() {
   const sections = Object.values(TSection).filter(
@@ -21,22 +18,18 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   }
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { page } = context.params!
-  const section = page ? toTSection(page as string) : TSection.all
-  let posts = queryClient.getQueryData(queryKey.posts())
-  if (!posts) {
-    posts = filterPosts(await getPosts())
-    await queryClient.prefetchQuery(queryKey.posts(), () => posts)
-  }
+  const section = context.params?.page as TSection
 
-  if (section !== TSection.all) {
-    posts = filterSection(posts as TPosts, section)
-    await queryClient.prefetchQuery(queryKey.posts(section), () => posts)
+  let posts = queryClient.getQueryData(queryKey.posts(section))
+
+  if (!posts) {
+    await getPosts()
+    posts = queryClient.getQueryData(queryKey.posts(section)) as TPosts
   }
 
   return {
@@ -53,7 +46,6 @@ type Props = {
   section: TSection
 }
 
-//
 const MainPage: React.FC<Props> = ({ section, posts }) => {
   return (
     <StyledWrapper>
