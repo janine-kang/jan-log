@@ -1,7 +1,7 @@
 import { NotionAPI } from "notion-client"
 import { getCollectionKey, getCollectionViewKey } from "src/general"
 
-export const getCollectionData = async () => {
+export const getBlogData = async () => {
   const collectionId = getCollectionKey()
   const collectionViewId = getCollectionViewKey()
 

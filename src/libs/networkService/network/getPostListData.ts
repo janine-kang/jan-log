@@ -1,7 +1,7 @@
 import getAllPageIds from "src/libs/utils/notion/getAllPageIds"
 import getPageProperties from "src/libs/utils/notion/getPageProperties"
 import { TPosts } from "src/types"
-import { getCollectionData } from "./getCollectionData"
+import { getBlogData } from "./getBlogData"
 import { getCollectionKey } from "src/general"
 
 /**
@@ -9,7 +9,7 @@ import { getCollectionKey } from "src/general"
  */
 
 export const getPostListData = async () => {
-  const response = await getCollectionData()
+  const response = await getBlogData()
 
   // Construct Data
   const pageIds = getAllPageIds(response)
