@@ -19,7 +19,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const id = getAboutPageKey()
   const recordMap = await getBlockData(id)
 
-  console.log("about: >> ", recordMap)
   return {
     props: {
       recordMap,
