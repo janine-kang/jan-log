@@ -1,6 +1,6 @@
 import { queryKey } from "src/general"
 import { queryClient } from "src/libs/react-query"
-import { filterPosts } from "src/libs/utils/notion"
+import { filterPosts } from "src/libs/networkService/notion"
 
 import { TSection } from "src/types"
 import { getPostListData } from "../network/getPostListData"

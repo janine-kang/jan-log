@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { formatDate } from "src/libs/utils"
 import styled from "@emotion/styled"
 import { inter } from "src/assets"

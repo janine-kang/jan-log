@@ -1,8 +1,9 @@
-import getAllPageIds from "src/libs/utils/notion/getAllPageIds"
-import getPageProperties from "src/libs/utils/notion/getPageProperties"
+import getAllPageIds from "src/libs/networkService/notion/getAllPageIds"
+
 import { TPosts } from "src/types"
 import { getBlogData } from "./getBlogData"
 import { getCollectionKey } from "src/general"
+import getProperties from "../service/getProperties"
 
 /**
  * @param {{ includePages: boolean }} - false: posts only / true: include pages
@@ -23,7 +24,7 @@ export const getPostListData = async () => {
   let data = []
 
   for (const id of pageIds) {
-    const properties = (await getPageProperties(id, block, schema)) || null
+    const properties = (await getProperties(id, block, schema)) || null
 
     // Add fullwidth, createdtime to properties
     properties.createdTime = new Date(block[id].value?.created_time).toString()

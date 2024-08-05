@@ -1,13 +1,17 @@
 import styled from "@emotion/styled"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { categoryKey } from "src/general"
 
 const NavBar: React.FC = () => {
+  const router = useRouter()
+  const section = router.query.page ?? ""
+
   return (
     <StyledWrapper className="">
       <ul className="blog">
         {categoryKey.links.map((link) => (
-          <li key={link.id}>
+          <li key={link.id} className={section === link.name ? "page" : ""}>
             <Link href={link.to}>{link.name}</Link>
           </li>
         ))}
@@ -48,6 +52,12 @@ const StyledWrapper = styled.div`
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
+  }
+
+  .page {
+    font-weight: 900;
+    padding: 0px 2px;
+    letter-spacing: 0.5px;
   }
 
   .blog {

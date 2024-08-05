@@ -2,7 +2,7 @@ import Footer from "./Components/Footer"
 import styled from "@emotion/styled"
 import MobileProfileCard from "./Components/MobileProfileCard"
 import ProfileCard from "./Components/ProfileCard"
-import PostList from "./PostList"
+import PostList from "../PostList"
 
 import { inter } from "src/assets"
 import HomeHeader from "./Header/HomeHeader"
@@ -37,7 +37,6 @@ const Home: React.FC<Props> = () => {
   return (
     <StyledWrapper>
       <div className="mid">
-        <MobileProfileCard />
         <HomeHeader
           headlines={pinnedPosts}
           type={hasPinned ? "pinned" : "latest"}

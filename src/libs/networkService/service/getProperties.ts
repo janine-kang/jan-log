@@ -1,10 +1,10 @@
 import { getTextContent, getDateValue } from "notion-utils"
 import { NotionAPI } from "notion-client"
 import { BlockMap, CollectionPropertySchemaMap } from "notion-types"
-import { customMapImageUrl } from "./customMapImageUrl"
+import { customMapImageUrl } from "../notion/customMapImageUrl"
 
 // 각 Contents 값 통신해오는 부분으로 추정
-async function getPageProperties(
+async function getProperties(
   id: string,
   block: BlockMap,
   schema: CollectionPropertySchemaMap | undefined
@@ -93,4 +93,4 @@ async function getPageProperties(
   return properties
 }
 
-export { getPageProperties as default }
+export { getProperties as default }

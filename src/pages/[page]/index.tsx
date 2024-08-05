@@ -6,7 +6,12 @@ import { queryClient } from "src/libs/react-query"
 import { queryKey } from "src/general/constants/queryKey"
 import { getRevalidationTime, RevalidationConfigType } from "src/general"
 import { getPosts } from "src/libs/networkService"
-import PostList from "src/routes/Home/PostList"
+import PostList from "src/routes/PostList"
+import TagList from "src/routes/Tags/TagList"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
+import filterByTags from "src/libs/networkService/notion/filterByTags"
 
 export async function getStaticPaths() {
   const sections = Object.values(TSection).filter(
@@ -24,15 +29,17 @@ export async function getStaticPaths() {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const section = context.params?.page as TSection
-  const posts = queryClient.getQueryData(queryKey.posts(section))
+  let posts = queryClient.getQueryData(queryKey.posts(section))
 
   if (!posts) {
     await getPosts()
+    posts = queryClient.getQueryData(queryKey.posts(section))
   }
 
   return {
     props: {
       section,
+      posts,
     },
     revalidate: getRevalidationTime(RevalidationConfigType.list),
   }
@@ -40,18 +47,35 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 type Props = {
   section: TSection
+  posts: TPosts
 }
 
-const MainPage: React.FC<Props> = ({ section }) => {
-  const posts = queryClient.getQueryData(queryKey.posts(section)) as TPosts
+const MainPage: React.FC<Props> = ({ section, posts }) => {
+  const [postList, setPostList] = useState(posts)
+  const params = useRouter().asPath.split("?tag=")[1]
+  const tags = filterByTags(posts)
+  const tagList = tags && Object.keys(tags)
+
+  useEffect(() => {
+    if (params && tags) {
+      const filtered = tags[params]
+      setPostList(filtered)
+    } else {
+      setPostList(posts)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params, posts])
 
   return (
     <StyledWrapper>
       <div className="topic">
-        <p className="title">{section}</p>
+        <Link href={`/${section}`} className="title">
+          {section}
+        </Link>
+        {tagList && <TagList tagList={tagList} />}
       </div>
       <div className="list">
-        <PostList posts={posts} />
+        <PostList posts={postList} />
       </div>
     </StyledWrapper>
   )

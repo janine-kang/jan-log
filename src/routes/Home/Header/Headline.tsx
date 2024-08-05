@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import Link from "next/link"
-import Tag from "src/general/components/Tag"
+import Tag from "src/routes/Tags/Tag"
 import { TPost } from "src/types"
 
 type Props = {

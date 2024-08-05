@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { formatDate } from "src/libs/utils"
-import Tag from "../../../general/components/Tag"
-import { TPost } from "../../../types"
+import Tag from "../Tags/Tag"
+import { TPost } from "../../types"
 import styled from "@emotion/styled"
 import { inter } from "src/assets"
 
@@ -14,8 +14,8 @@ const PostCard: React.FC<Props> = ({ data }) => {
   const date = new Date(data.date.start_date)
 
   return (
-    <StyledWrapper>
-      <Link href={`/${section}/${data.slug}`}>
+    <Link href={`/${section}/${data.slug}`}>
+      <StyledWrapper>
         <article>
           <div data-category={!!section} className="content">
             <header className="top">
@@ -36,8 +36,8 @@ const PostCard: React.FC<Props> = ({ data }) => {
             </div>
           </div>
         </article>
-      </Link>
-    </StyledWrapper>
+      </StyledWrapper>
+    </Link>
   )
 }
 
