@@ -1,8 +1,13 @@
 import styled from "@emotion/styled"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { categoryKey } from "src/general"
 
 const NavBar: React.FC = () => {
+  // const router = useRouter()
+
+  // console.log("🦋", router)
+
   return (
     <StyledWrapper className="">
       <ul className="blog">

@@ -2,7 +2,7 @@ import Footer from "./Components/Footer"
 import styled from "@emotion/styled"
 import MobileProfileCard from "./Components/MobileProfileCard"
 import ProfileCard from "./Components/ProfileCard"
-import PostList from "./PostList"
+import PostList from "../PostList"
 
 import { inter } from "src/assets"
 import HomeHeader from "./Header/HomeHeader"

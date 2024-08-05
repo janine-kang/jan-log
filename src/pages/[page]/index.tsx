@@ -6,7 +6,7 @@ import { queryClient } from "src/libs/react-query"
 import { queryKey } from "src/general/constants/queryKey"
 import { getRevalidationTime, RevalidationConfigType } from "src/general"
 import { getPosts } from "src/libs/networkService"
-import PostList from "src/routes/Home/PostList"
+import PostList from "src/routes/PostList"
 
 export async function getStaticPaths() {
   const sections = Object.values(TSection).filter(
@@ -24,15 +24,17 @@ export async function getStaticPaths() {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const section = context.params?.page as TSection
-  const posts = queryClient.getQueryData(queryKey.posts(section))
+  let posts = queryClient.getQueryData(queryKey.posts(section))
 
   if (!posts) {
     await getPosts()
+    posts = queryClient.getQueryData(queryKey.posts(section))
   }
 
   return {
     props: {
       section,
+      posts,
     },
     revalidate: getRevalidationTime(RevalidationConfigType.list),
   }
@@ -40,11 +42,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 type Props = {
   section: TSection
+  posts: TPosts
 }
 
-const MainPage: React.FC<Props> = ({ section }) => {
-  const posts = queryClient.getQueryData(queryKey.posts(section)) as TPosts
-
+const MainPage: React.FC<Props> = ({ section, posts }) => {
   return (
     <StyledWrapper>
       <div className="topic">
