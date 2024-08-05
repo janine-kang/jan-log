@@ -1,6 +1,6 @@
 import React from "react"
 import PostCard from "src/routes/Home/PostList/PostCard"
-import { TPosts, TSection } from "src/types"
+import { TPosts } from "src/types"
 
 type Props = {
   posts: TPosts

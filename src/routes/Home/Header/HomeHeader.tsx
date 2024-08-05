@@ -22,7 +22,7 @@ const HomeHeader: React.FC<Props> = ({ headlines, type }) => {
         <span>{type} — </span>
         {formatDate(date)}
       </p>
-      <div>
+      <div className="list">
         {headlines.map((post) => (
           <Headline key={post.id} post={post} />
         ))}
@@ -47,5 +47,11 @@ const StyledWrapper = styled.div`
     span {
       word-spacing: 3px;
     }
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
 `

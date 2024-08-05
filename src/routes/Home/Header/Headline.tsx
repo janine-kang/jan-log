@@ -37,6 +37,8 @@ const Headline: React.FC<Props> = ({ post }) => {
 export default Headline
 
 const StyledWrapper = styled(Link)`
+  margin: 3px 0px;
+
   article {
     position: relative;
     overflow: hidden;
@@ -48,7 +50,7 @@ const StyledWrapper = styled(Link)`
   .title {
     width: auto;
     position: relative;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     transition: color 0.3s ease;
 
     &::after {
@@ -56,7 +58,7 @@ const StyledWrapper = styled(Link)`
       position: absolute;
       left: -5px;
       bottom: -5px;
-      height: 32px;
+      height: 21px;
       width: 105%;
       background: linear-gradient(to right, #fdf434f0, #fdf434a1);
       clip-path: polygon(3% 0%, 100% 0%, 97% 100%, 0% 100%);
