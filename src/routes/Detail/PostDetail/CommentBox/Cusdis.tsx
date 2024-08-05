@@ -3,7 +3,7 @@ import { ReactCusdis } from "react-cusdis"
 import { useCallback, useEffect, useState } from "react"
 import styled from "@emotion/styled"
 import useScheme from "src/general/hooks/useScheme"
-import { useRouter } from "next/router"
+import { BlogConfigType, getBlogSettings } from "src/general"
 
 type Props = {
   id: string
@@ -47,7 +47,7 @@ const Cusdis: React.FC<Props> = ({ id, slug, title }) => {
             appId: CONFIG.cusdis.config.appid,
             pageId: id,
             pageTitle: title,
-            pageUrl: `${CONFIG.link}/${slug}`,
+            pageUrl: `${getBlogSettings(BlogConfigType.link)}/${slug}`,
             theme: scheme,
           }}
         />

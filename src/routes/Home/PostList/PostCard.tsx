@@ -14,34 +14,36 @@ const PostCard: React.FC<Props> = ({ data }) => {
   const date = new Date(data.date.start_date)
 
   return (
-    <StyledWrapper href={`/${section}/${data.slug}`}>
-      <article>
-        <div data-category={!!section} className="content">
-          <header className="top">
-            <h2>{data.title}</h2>
-          </header>
+    <StyledWrapper>
+      <Link href={`/${section}/${data.slug}`}>
+        <article>
+          <div data-category={!!section} className="content">
+            <header className="top">
+              <h2>{data.title}</h2>
+            </header>
 
-          <div className="summary">
-            <p>{data.summary}</p>
+            <div className="summary">
+              <p>{data.summary}</p>
+            </div>
+            <div className="tags">
+              {data.tags &&
+                data.tags.map((tag: string, idx: number) => (
+                  <Tag key={idx}>{tag}</Tag>
+                ))}
+            </div>
+            <div className="date">
+              <div className="content"> — {formatDate(date)}</div>
+            </div>
           </div>
-          <div className="tags">
-            {data.tags &&
-              data.tags.map((tag: string, idx: number) => (
-                <Tag key={idx}>{tag}</Tag>
-              ))}
-          </div>
-          <div className="date">
-            <div className="content"> — {formatDate(date)}</div>
-          </div>
-        </div>
-      </article>
+        </article>
+      </Link>
     </StyledWrapper>
   )
 }
 
 export default PostCard
 
-const StyledWrapper = styled(Link)`
+const StyledWrapper = styled.div`
   article {
     overflow: hidden;
     position: relative;

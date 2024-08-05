@@ -5,22 +5,24 @@ import styled from "@emotion/styled"
 import { inter } from "src/assets"
 import { permanentMarker } from "src/assets/fonts/permanentMarker"
 import ContactCard from "./ContactCard"
+import { getUserProfile, ProfileConfigType } from "src/general"
 
 type Props = {}
 
 const ProfileCard: React.FC<Props> = () => {
   return (
     <StyledWrapper>
-      {/* <div className="title">about me</div> */}
       <div className="content">
         <div className="title">about me</div>
         <div className="top">
-          <Image src={CONFIG.profile.image} fill alt="" />
+          <Image src={getUserProfile(ProfileConfigType.image)} fill alt="" />
         </div>
         <div className="mid">
-          <div className="name">{CONFIG.profile.name}</div>
-          <div className="role">{CONFIG.profile.role}</div>
-          <div className="bio">{CONFIG.profile.bio}</div>
+          <div className="name">{getUserProfile(ProfileConfigType.name)}</div>
+          <div className="position">
+            {getUserProfile(ProfileConfigType.position)}
+          </div>
+          <div className="bio">{getUserProfile(ProfileConfigType.bio)}</div>
         </div>
         <ContactCard />
       </div>
@@ -72,7 +74,7 @@ const StyledWrapper = styled.div`
         font-family: ${inter.style.fontFamily};
         font-weight: 700;
       }
-      .role {
+      .position {
         margin-bottom: 1rem;
         font-size: 0.75rem;
         line-height: 1.25rem;

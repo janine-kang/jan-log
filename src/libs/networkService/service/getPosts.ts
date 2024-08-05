@@ -1,8 +1,9 @@
 import { queryKey } from "src/general"
 import { queryClient } from "src/libs/react-query"
 import { filterPosts } from "src/libs/utils/notion"
-import { getPostsData } from "src/libs/networkService"
-import { TPost, TSection } from "src/types"
+
+import { TSection } from "src/types"
+import { getPostListData } from "../network/getPostListData"
 
 export const getPosts = async () => {
   let sections: { [key in TSection]: any[] } = {
@@ -14,7 +15,7 @@ export const getPosts = async () => {
     [TSection.all]: [],
   }
 
-  const posts = filterPosts(await getPostsData())
+  const posts = filterPosts(await getPostListData())
   sections[TSection.all] = posts
 
   for (const post of posts) {

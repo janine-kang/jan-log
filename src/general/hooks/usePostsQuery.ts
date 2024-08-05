@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query"
 import { queryKey } from "src/general/constants/queryKey"
-import { TPost } from "src/types"
+import { TPost, TSection } from "src/types"
 
-const usePostsQuery = () => {
+const usePostsQuery = (section: TSection = TSection.all) => {
   const { data } = useQuery({
-    queryKey: queryKey.posts(),
+    queryKey: queryKey.posts(section),
     initialData: [] as TPost[],
     enabled: false,
   })

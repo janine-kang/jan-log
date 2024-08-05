@@ -2,11 +2,11 @@ import React from "react"
 import PostHeader from "./PostHeader"
 import Footer from "./PostFooter"
 import CommentBox from "./CommentBox"
-import Category from "src/general/components/Category"
 import styled from "@emotion/styled"
 import NotionRenderer from "../components/NotionRenderer"
 import usePostQuery from "src/general/hooks/usePostQuery"
 import { capitalizeFirstLetter } from "src/libs/utils"
+import Category from "src/general/components/Category"
 
 type Props = {}
 
@@ -15,20 +15,17 @@ const PostDetail: React.FC<Props> = () => {
 
   if (!data) return null
 
-  const section =
-    capitalizeFirstLetter(data.section && data.section?.[0]) || undefined
+  const section = capitalizeFirstLetter(data.section && data.section?.[0])
 
   return (
     <StyledWrapper>
       <article>
-        {section && (
-          <div css={{ marginBottom: "0.5rem" }}>
-            {/* <Category>{section}</Category> */}
-          </div>
-        )}
+        <div css={{ marginBottom: "0.5rem" }}>
+          <Category>{section}</Category>
+        </div>
         <PostHeader data={data} />
         <div>
-          <NotionRenderer recordMap={data.recordMap} />
+          <NotionRenderer recordMap={data.block} />
         </div>
         <>
           <Footer />

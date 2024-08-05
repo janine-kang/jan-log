@@ -1,6 +1,5 @@
 import Detail from "src/routes/Detail"
-import { CONFIG } from "site.config"
-import { NextPageWithLayout, TPosts } from "../../../types"
+import { NextPageWithLayout, TPosts, TSection } from "../../../types"
 import { toTSection } from "src/libs/utils"
 import CustomError from "src/routes/Error"
 
@@ -10,7 +9,14 @@ import { queryClient } from "src/libs/react-query"
 import { queryKey } from "src/general/constants/queryKey"
 import { dehydrate } from "@tanstack/react-query"
 import usePostQuery from "src/general/hooks/usePostQuery"
-import { getPosts, getRecordMap } from "src/libs/networkService"
+import { getPosts } from "src/libs/networkService"
+import {
+  getRevalidationTime,
+  RevalidationConfigType,
+  getBlogSettings,
+  BlogConfigType,
+} from "src/general"
+import { getArticle } from "src/libs/networkService/service/getArticle"
 
 export const getStaticPaths = async () => {
   let posts = queryClient.getQueryData(queryKey.posts()) as TPosts
@@ -27,28 +33,24 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  const section = context.params?.page as TSection
   const slug = context.params?.slug
-  let posts = queryClient.getQueryData(queryKey.posts()) as TPosts
+
+  let posts = queryClient.getQueryData(queryKey.posts(section)) as TPosts
 
   if (!posts) {
     await getPosts()
-    posts = queryClient.getQueryData(queryKey.posts()) as TPosts
+    posts = queryClient.getQueryData(queryKey.posts(section)) as TPosts
   }
 
-  const postDetail = posts.find((t: any) => t.slug === slug)
-  // TODO: - 통신 줄이기
-  const recordMap = await getRecordMap(postDetail?.id!)
-
-  await queryClient.prefetchQuery(queryKey.post(`${slug}`), () => ({
-    ...postDetail,
-    recordMap,
-  }))
+  const target = posts.find((t: any) => t.slug === slug)
+  await getArticle(target)
 
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
-    revalidate: CONFIG.revalidatePostTime,
+    revalidate: getRevalidationTime(RevalidationConfigType.post),
   }
 }
 
@@ -59,8 +61,10 @@ const DetailPage: NextPageWithLayout = () => {
 
   const image =
     post.thumbnail ??
-    CONFIG.ogImageGenerateURL ??
-    `${CONFIG.ogImageGenerateURL}/${encodeURIComponent(post.title)}.png`
+    getBlogSettings(BlogConfigType.ogImageGen) ??
+    `${getBlogSettings(BlogConfigType.ogImageGen)}/${encodeURIComponent(
+      post.title
+    )}.png`
 
   const date = post.date?.start_date || post.createdTime || ""
   const section = post.section[0]
@@ -71,7 +75,7 @@ const DetailPage: NextPageWithLayout = () => {
     image: image,
     description: post.summary || "",
     section: toTSection(section),
-    url: `${CONFIG.link}/${section}/${post.slug}`,
+    url: `${getBlogSettings(BlogConfigType.link)}/${section}/${post.slug}`,
   }
 
   return (

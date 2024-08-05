@@ -1,13 +1,17 @@
-import Feed from "src/routes/Feed"
-import { CONFIG } from "../../site.config"
 import { NextPageWithLayout } from "../types"
 
 import MetaConfig from "src/general/components/MetaConfig"
 import { queryClient } from "src/libs/react-query"
 import { GetStaticProps } from "next"
 import { dehydrate } from "@tanstack/react-query"
-import { getRevalidationTime, RevalidationType } from "src/general"
+import {
+  BlogConfigType,
+  getBlogSettings,
+  getRevalidationTime,
+  RevalidationConfigType,
+} from "src/general"
 import { getPosts } from "src/libs/networkService"
+import Home from "src/routes/Home"
 
 export const getStaticProps: GetStaticProps = async () => {
   await getPosts()
@@ -16,24 +20,24 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
-    revalidate: getRevalidationTime(RevalidationType.list),
+    revalidate: getRevalidationTime(RevalidationConfigType.list),
   }
 }
 
-const FeedPage: NextPageWithLayout = () => {
+const HomePage: NextPageWithLayout = () => {
   const meta = {
-    title: CONFIG.blog.title,
-    description: CONFIG.blog.description,
+    title: getBlogSettings(BlogConfigType.title),
+    description: getBlogSettings(BlogConfigType.description),
     type: "website",
-    url: CONFIG.link,
+    url: getBlogSettings(BlogConfigType.link),
   }
 
   return (
     <>
       <MetaConfig {...meta} />
-      <Feed />
+      <Home />
     </>
   )
 }
 
-export default FeedPage
+export default HomePage

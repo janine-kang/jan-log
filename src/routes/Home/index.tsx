@@ -1,28 +1,42 @@
 import Footer from "./Components/Footer"
 import styled from "@emotion/styled"
-import TagList from "./Components/TagList"
 import MobileProfileCard from "./Components/MobileProfileCard"
 import ProfileCard from "./Components/ProfileCard"
 import PostList from "./PostList"
-import { FeedHeader } from "./FeedHeader"
+
 import { inter } from "src/assets"
+import HomeHeader from "./Header/HomeHeader"
 import usePostsQuery from "src/general/hooks/usePostsQuery"
+import { TPosts } from "src/types"
 
 const HEADER_HEIGHT = 73
 
 type Props = {}
 
-const Feed: React.FC<Props> = () => {
-  const posts = usePostsQuery()
+const Home: React.FC<Props> = () => {
+  const list = usePostsQuery()
+
+  let headlines: TPosts = []
+  let posts: TPosts = []
+
+  list.forEach((post) => {
+    if (!post.pinned || post.pinned === "No") {
+      posts.push(post)
+    } else {
+      headlines.push(post)
+    }
+  })
 
   return (
     <StyledWrapper>
       <div className="mid">
         <MobileProfileCard />
-        <FeedHeader />
-        <div className="tags">
-          <TagList />
-        </div>
+        <HomeHeader
+          headlines={
+            headlines.length === 0 ? posts.slice(0, 3) : (headlines as TPosts)
+          }
+          type={headlines.length === 0 ? "latest" : "pinned"}
+        />
         <div className="contents">
           <p className="time">more issues</p>
           <PostList posts={posts} />
@@ -46,7 +60,7 @@ const Feed: React.FC<Props> = () => {
   )
 }
 
-export default Feed
+export default Home
 
 const StyledWrapper = styled.div`
   grid-template-columns: repeat(12, minmax(0, 1fr));

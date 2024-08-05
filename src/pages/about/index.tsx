@@ -5,9 +5,10 @@ import { permanentMarker } from "src/assets/fonts"
 import {
   getAboutPageKey,
   getRevalidationTime,
-  RevalidationType,
+  RevalidationConfigType,
 } from "src/general"
-import { getRecordMap } from "src/libs/notion-client"
+import { getBlockData } from "src/libs/networkService"
+
 import NotionRenderer from "src/routes/Detail/components/NotionRenderer"
 
 type Props = {
@@ -16,13 +17,14 @@ type Props = {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const id = getAboutPageKey()
-  const recordMap = await getRecordMap(id)
+  const recordMap = await getBlockData(id)
 
+  console.log("about: >> ", recordMap)
   return {
     props: {
       recordMap,
     },
-    revalidate: getRevalidationTime(RevalidationType.post),
+    revalidate: getRevalidationTime(RevalidationConfigType.post),
   }
 }
 

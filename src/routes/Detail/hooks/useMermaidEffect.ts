@@ -21,8 +21,6 @@ const useMermaidEffect = () => {
       )
     }
   }, [])
-
-  return
 }
 
 export default useMermaidEffect

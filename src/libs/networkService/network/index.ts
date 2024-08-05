@@ -1,3 +1,3 @@
-export * from "./getRecordMap"
-export * from "./getPostsData"
+export * from "./getBlockData"
+export * from "./getPostListData"
 export * from "./getCollectionData"

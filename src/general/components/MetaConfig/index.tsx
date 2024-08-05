@@ -1,5 +1,11 @@
-import { CONFIG } from "site.config"
 import Head from "next/head"
+import {
+  getBlogSettings,
+  BlogConfigType,
+  getUserProfile,
+  ProfileConfigType,
+} from "src/general/constants/configs"
+
 import { TSection } from "src/types"
 
 export type MetaConfigProps = {
@@ -23,7 +29,12 @@ const MetaConfig: React.FC<MetaConfigProps> = (props) => {
       <meta property="og:title" content={props.title} />
       <meta property="og:description" content={props.description} />
       <meta property="og:url" content={props.url} />
-      {CONFIG.lang && <meta property="og:locale" content={CONFIG.lang} />}
+      {getBlogSettings(BlogConfigType.language) && (
+        <meta
+          property="og:locale"
+          content={getBlogSettings(BlogConfigType.language)}
+        />
+      )}
       {props.image && <meta property="og:image" content={props.image} />}
       {/* twitter */}
       <meta name="twitter:title" content={props.title} />
@@ -34,7 +45,10 @@ const MetaConfig: React.FC<MetaConfigProps> = (props) => {
 
       <>
         <meta property="article:published_time" content={props.date} />
-        <meta property="article:author" content={CONFIG.profile.name} />
+        <meta
+          property="article:author"
+          content={getUserProfile(ProfileConfigType.name)}
+        />
       </>
     </Head>
   )

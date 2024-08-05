@@ -8,7 +8,7 @@ import { getCollectionKey } from "src/general"
  * @param {{ includePages: boolean }} - false: posts only / true: include pages
  */
 
-export const getPostsData = async () => {
+export const getPostListData = async () => {
   const response = await getCollectionData()
 
   // Construct Data
