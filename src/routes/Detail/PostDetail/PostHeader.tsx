@@ -5,6 +5,7 @@ import { formatDate } from "src/libs/utils"
 import Image from "next/image"
 import React from "react"
 import styled from "@emotion/styled"
+import { getBlogSettings, BlogConfigType } from "src/general"
 
 type Props = {
   data: TPost
@@ -34,7 +35,7 @@ const PostHeader: React.FC<Props> = ({ data }) => {
           <div className="date">
             {formatDate(
               data?.date?.start_date || data.createdTime,
-              CONFIG.lang
+              getBlogSettings(BlogConfigType.language)
             )}
           </div>
         </div>
