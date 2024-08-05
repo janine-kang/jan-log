@@ -3,7 +3,7 @@ const CONFIG = {
   profile: {
     name: "Janine",
     image: "/profile.jpeg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
-    role: "iOS Software Engineer",
+    position: "iOS Software Engineer",
     bio: "지나간 파도는 잊어도 됩니다. \n다음 파도에 잘 올라타기 위한 준비만 잘하면 됩니다.",
     email: "developerjanine@gmail.com",
     linkedin: "janine-kang",
@@ -20,13 +20,11 @@ const CONFIG = {
   blog: {
     title: "Waves of Janine",
     description: "🌊🏄🏻‍♀️🌊🌊",
+    link: "",
+    since: "2021", // If leave this empty, current year will be used.
+    lang: "en-US", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES', 'ko-KR']
+    ogImageGenerateURL: "", // The link to generate OG image, don't end with a slash
   },
-
-  // CONFIG configration (required)
-  link: "",
-  since: 2021, // If leave this empty, current year will be used.
-  lang: "en-US", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES', 'ko-KR']
-  ogImageGenerateURL: "", // The link to generate OG image, don't end with a slash
 
   // notion configuration (required)
   notionConfig: {

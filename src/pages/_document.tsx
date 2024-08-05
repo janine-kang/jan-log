@@ -1,10 +1,11 @@
 import Document, { Html, Head, Main, NextScript } from "next/document"
 import { CONFIG } from "site.config"
+import { BlogConfigType, getBlogSettings } from "src/general"
 
 class MyDocument extends Document {
   render() {
     return (
-      <Html lang={CONFIG.lang}>
+      <Html lang={getBlogSettings(BlogConfigType.language)}>
         <Head>
           <link rel="icon" href="/favicon.ico" />
           <link
@@ -16,7 +17,7 @@ class MyDocument extends Document {
             rel="alternate"
             type="application/rss+xml"
             title="RSS 2.0"
-            href="/feed"
+            href="/Home"
           ></link>
           {/* google search console */}
           {CONFIG.googleSearchConsole.enable === true && (

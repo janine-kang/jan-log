@@ -2,7 +2,7 @@ import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
 import { ExtendedRecordMap } from "notion-types"
-import useScheme from "src/hooks/useScheme"
+import useScheme from "src/general/hooks/useScheme"
 
 // core styles shared by all of react-notion-x (required)
 import "react-notion-x/src/styles.css"

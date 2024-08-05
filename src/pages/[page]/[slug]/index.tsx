@@ -1,53 +1,56 @@
 import Detail from "src/routes/Detail"
-import { filterPosts } from "src/libs/utils/notion"
-import { CONFIG } from "site.config"
-import { NextPageWithLayout, TPosts } from "../../../types"
+import { NextPageWithLayout, TPosts, TSection } from "../../../types"
 import { toTSection } from "src/libs/utils"
 import CustomError from "src/routes/Error"
-import { getRecordMap, getPosts } from "src/apis"
-import MetaConfig from "src/components/MetaConfig"
+
+import MetaConfig from "src/general/components/MetaConfig"
 import { GetStaticProps } from "next"
 import { queryClient } from "src/libs/react-query"
-import { queryKey } from "src/constants/queryKey"
+import { queryKey } from "src/general/constants/queryKey"
 import { dehydrate } from "@tanstack/react-query"
-import usePostQuery from "src/hooks/usePostQuery"
+import usePostQuery from "src/general/hooks/usePostQuery"
+import { getPosts } from "src/libs/networkService"
+import {
+  getRevalidationTime,
+  RevalidationConfigType,
+  getBlogSettings,
+  BlogConfigType,
+} from "src/general"
+import { getArticle } from "src/libs/networkService/service/getArticle"
 
 export const getStaticPaths = async () => {
   let posts = queryClient.getQueryData(queryKey.posts()) as TPosts
 
   if (!posts) {
-    posts = filterPosts(await getPosts())
-    await queryClient.prefetchQuery(queryKey.posts(), () => posts)
+    await getPosts()
+    posts = queryClient.getQueryData(queryKey.posts()) as TPosts
   }
 
   return {
-    paths: posts.map((row) => `/${row.section}/${row.slug ?? ""}`),
+    paths: posts.map((post) => `/${post.section}/${post.slug}`),
     fallback: true,
   }
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  const section = context.params?.page as TSection
   const slug = context.params?.slug
 
-  const posts = await getPosts()
-  const feedPosts = filterPosts(posts)
-  await queryClient.prefetchQuery(queryKey.posts(), () => feedPosts)
+  let posts = queryClient.getQueryData(queryKey.posts(section)) as TPosts
 
-  const detailPosts = filterPosts(posts)
+  if (!posts) {
+    await getPosts()
+    posts = queryClient.getQueryData(queryKey.posts(section)) as TPosts
+  }
 
-  const postDetail = detailPosts.find((t: any) => t.slug === slug)
-  const recordMap = await getRecordMap(postDetail?.id!)
-
-  await queryClient.prefetchQuery(queryKey.post(`${slug}`), () => ({
-    ...postDetail,
-    recordMap,
-  }))
+  const target = posts.find((t: any) => t.slug === slug)
+  await getArticle(target)
 
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
-    revalidate: CONFIG.revalidatePostTime,
+    revalidate: getRevalidationTime(RevalidationConfigType.post),
   }
 }
 
@@ -58,8 +61,10 @@ const DetailPage: NextPageWithLayout = () => {
 
   const image =
     post.thumbnail ??
-    CONFIG.ogImageGenerateURL ??
-    `${CONFIG.ogImageGenerateURL}/${encodeURIComponent(post.title)}.png`
+    getBlogSettings(BlogConfigType.ogImageGen) ??
+    `${getBlogSettings(BlogConfigType.ogImageGen)}/${encodeURIComponent(
+      post.title
+    )}.png`
 
   const date = post.date?.start_date || post.createdTime || ""
   const section = post.section[0]
@@ -70,7 +75,7 @@ const DetailPage: NextPageWithLayout = () => {
     image: image,
     description: post.summary || "",
     section: toTSection(section),
-    url: `${CONFIG.link}/${section}/${post.slug}`,
+    url: `${getBlogSettings(BlogConfigType.link)}/${section}/${post.slug}`,
   }
 
   return (

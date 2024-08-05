@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import { getPosts } from "../../apis"
+import { getPostListData } from "src/libs/networkService"
 
 // for all path revalidate, https://<your-site.com>/api/revalidate?secret=<token>
 // for specific path revalidate, https://<your-site.com>/api/revalidate?secret=<token>&path=<path>
-// example, https://<your-site.com>/api/revalidate?secret=이것은_키&path=feed
+// example, https://<your-site.com>/api/revalidate?secret=이것은_키&path=Home
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -17,7 +17,7 @@ export default async function handler(
     if (path && typeof path === "string") {
       await res.revalidate(path)
     } else {
-      const posts = await getPosts()
+      const posts = await getPostListData()
       const revalidateRequests = posts.map((row) =>
         res.revalidate(`/${row.slug}`)
       )

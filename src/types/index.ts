@@ -42,9 +42,8 @@ export type TPost = {
   thumbnail?: string
 }
 
-// TODO: - ExtendedRecordMap -> RecordMap 사용해도 되는지 확인
-export type PostDetail = TPost & {
-  recordMap: ExtendedRecordMap
+export type PostDetailType = TPost & {
+  block: ExtendedRecordMap
 }
 
 export type TPosts = TPost[]

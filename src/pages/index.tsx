@@ -1,40 +1,43 @@
-import Feed from "src/routes/Feed"
-import { CONFIG } from "../../site.config"
 import { NextPageWithLayout } from "../types"
-import { getPosts } from "../apis"
-import MetaConfig from "src/components/MetaConfig"
+
+import MetaConfig from "src/general/components/MetaConfig"
 import { queryClient } from "src/libs/react-query"
-import { queryKey } from "src/constants/queryKey"
 import { GetStaticProps } from "next"
 import { dehydrate } from "@tanstack/react-query"
-import { filterPosts } from "src/libs/utils/notion"
+import {
+  BlogConfigType,
+  getBlogSettings,
+  getRevalidationTime,
+  RevalidationConfigType,
+} from "src/general"
+import { getPosts } from "src/libs/networkService"
+import Home from "src/routes/Home"
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = filterPosts(await getPosts())
-  await queryClient.prefetchQuery(queryKey.posts(), () => posts)
+  await getPosts()
 
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
-    revalidate: CONFIG.revalidateListTime,
+    revalidate: getRevalidationTime(RevalidationConfigType.list),
   }
 }
 
-const FeedPage: NextPageWithLayout = () => {
+const HomePage: NextPageWithLayout = () => {
   const meta = {
-    title: CONFIG.blog.title,
-    description: CONFIG.blog.description,
+    title: getBlogSettings(BlogConfigType.title),
+    description: getBlogSettings(BlogConfigType.description),
     type: "website",
-    url: CONFIG.link,
+    url: getBlogSettings(BlogConfigType.link),
   }
 
   return (
     <>
       <MetaConfig {...meta} />
-      <Feed />
+      <Home />
     </>
   )
 }
 
-export default FeedPage
+export default HomePage

@@ -1,30 +1,19 @@
 import styled from "@emotion/styled"
 import Link from "next/link"
-import { TSection } from "src/types"
+import { categoryKey } from "src/general"
 
 const NavBar: React.FC = () => {
-  const links = [
-    { id: 1, name: "ARCHIVE", to: `/${TSection.archive}` },
-    { id: 2, name: "BOOKS", to: `/${TSection.books}` },
-    { id: 3, name: "JOURNAL", to: `/${TSection.journal}` },
-  ]
-
-  const introduce = [
-    { id: 4, name: "ABOUT", to: `/${TSection.about}` },
-    { id: 5, name: "JANINE", to: `/${TSection.work}` },
-  ]
-
   return (
     <StyledWrapper className="">
       <ul className="blog">
-        {links.map((link) => (
+        {categoryKey.links.map((link) => (
           <li key={link.id}>
             <Link href={link.to}>{link.name}</Link>
           </li>
         ))}
       </ul>
       <ul className="mypage">
-        {introduce.map((link) => (
+        {categoryKey.introduce.map((link) => (
           <li key={link.id}>
             <Link href={link.to}>{link.name}</Link>
           </li>
