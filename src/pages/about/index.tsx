@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import { GetStaticProps } from "next"
 
-import { permanentMarker } from "src/assets/fonts"
+import { inter, permanentMarker } from "src/assets/fonts"
 import {
   getAboutPageKey,
   getRevalidationTime,
@@ -87,19 +87,12 @@ const StyledWrapper = styled.div`
   }
 
   .notion-text {
-    font-size: 1.1rem;
+    font-size: 1rem;
     word-break: keep-all !important;
-    line-height: 1.2;
-    letter-spacing: -0.2px;
+    line-height: 1.4;
+    font-family: ${inter.style.fontFamily};
     padding: 0px 2px !important;
     margin: 2px 0 !important;
-
-    @media (max-width: 767px) {
-      padding: 0px 1.3rem !important;
-      line-height: 1.4;
-      letter-spacing: -0.2px;
-      word-break: keep-all !important;
-    }
   }
 
   .notion-link {
