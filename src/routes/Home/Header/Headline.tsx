@@ -61,6 +61,10 @@ const StyledWrapper = styled(Link)`
     }
   }
 
+  .content {
+    padding: 1rem;
+  }
+
   .thumbnail {
     overflow: hidden;
     position: relative;

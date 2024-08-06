@@ -28,6 +28,7 @@ export enum ProfileConfigType {
 export enum BlogConfigType {
   title = "title",
   description = "description",
+  mobile = "mobileDescription",
   link = "link",
   language = "lang",
   since = "since",

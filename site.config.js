@@ -18,7 +18,7 @@ const CONFIG = {
   ],
   // blog setting (required)
   blog: {
-    title: "Waves of Janine",
+    title: "강재닌의 강한 참조",
     description: "🌊🏄🏻‍♀️🌊🌊",
     mobileDescription: "🏄🏻‍♀️🌊",
     link: "",

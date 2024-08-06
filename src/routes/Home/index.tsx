@@ -1,6 +1,5 @@
 import Footer from "./Components/Footer"
 import styled from "@emotion/styled"
-import MobileProfileCard from "./Components/MobileProfileCard"
 import ProfileCard from "./Components/ProfileCard"
 import PostList from "../PostList"
 
@@ -101,9 +100,6 @@ const StyledWrapper = styled.div`
 
     @media (min-width: 1024px) {
       grid-column: span 9 / span 9;
-    }
-    @media (max-width: 768px) {
-      padding: 0 1.4rem;
     }
 
     .contents {

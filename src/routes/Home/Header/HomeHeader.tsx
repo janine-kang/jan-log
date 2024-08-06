@@ -45,6 +45,8 @@ const StyledWrapper = styled.div`
   }
 
   @media (max-width: 767px) {
+    padding: 0;
+
     hr {
       display: block;
       margin: 1rem 0;
@@ -65,7 +67,7 @@ const StyledWrapper = styled.div`
     @media (max-width: 767px) {
       font-size: 14px;
       font-weight: 600;
-      padding: 5px 0;
+      padding: 0 1rem;
 
       span {
         background: yellow;
@@ -73,7 +75,6 @@ const StyledWrapper = styled.div`
 
       &::before {
         content: "📌  ";
-        left: 0;
         font-size: 1rem;
         background: yellow;
       }

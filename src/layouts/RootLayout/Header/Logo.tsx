@@ -10,7 +10,9 @@ const Logo: React.FC<Props> = ({ fullWidth }) => {
   return (
     <StyledWrapper href="/" aria-label={getBlogSettings(BlogConfigType.title)}>
       <h1 className="logo">{getBlogSettings(BlogConfigType.description)}</h1>
-      <h1 className="title">{getBlogSettings(BlogConfigType.title)}</h1>
+      <h1 className="title">
+        {getBlogSettings(BlogConfigType.title)}
+      </h1>
     </StyledWrapper>
   )
 }
@@ -27,6 +29,7 @@ const StyledWrapper = styled(Link)`
 
   .title {
     display: none;
+    text-transform: lowercase;
 
     @media (max-width: 767px) {
       display: block;
