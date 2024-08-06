@@ -10,6 +10,7 @@ import {
 import { getBlockData } from "src/libs/networkService"
 
 import NotionRenderer from "src/routes/Detail/components/NotionRenderer"
+import ProfileCard from "src/routes/Home/Components/ProfileCard"
 
 type Props = {
   recordMap: any
@@ -31,7 +32,12 @@ const About: React.FC<Props> = ({ recordMap }) => {
   return (
     <StyledWrapper>
       <div className="title">about</div>
-      <NotionRenderer recordMap={recordMap} />
+      <div className="mobile">
+        <ProfileCard />
+      </div>
+      <div className="desktop">
+        <NotionRenderer recordMap={recordMap} />
+      </div>
     </StyledWrapper>
   )
 }
@@ -42,8 +48,21 @@ const StyledWrapper = styled.div`
   width: 100%;
   max-width: 1200px;
 
-  @media (max-width: 767px) {
+  .mobile {
+    display: none;
+  }
+
+  @media (max-width: 1024px) {
     max-width: 767px;
+    margin: 0 auto;
+
+    .mobile {
+      display: block;
+    }
+
+    .desktop {
+      display: none;
+    }
   }
 
   .notion-collection-page-properties {
@@ -61,7 +80,7 @@ const StyledWrapper = styled.div`
     font-size: 2.4rem;
     color: hsl(0deg 66.67% 58.38%);
 
-    @media (max-width: 767px) {
+    @media (max-width: 1024px) {
       width: 100%;
       display: none;
     }

@@ -1,17 +1,28 @@
 import Link from "next/link"
 import styled from "@emotion/styled"
-import { BlogConfigType, getBlogSettings } from "src/general"
+import {
+  BlogConfigType,
+  getBlogSettings,
+  getUserProfile,
+  ProfileConfigType,
+} from "src/general"
+import Image from "next/image"
 
-type Props = {
-  fullWidth: Boolean
-}
-
-const Logo: React.FC<Props> = ({ fullWidth }) => {
+const Logo = () => {
   return (
     <StyledWrapper href="/" aria-label={getBlogSettings(BlogConfigType.title)}>
       <h1 className="logo">{getBlogSettings(BlogConfigType.description)}</h1>
       <h1 className="title">
-        {getBlogSettings(BlogConfigType.title)}
+        {/* {getBlogSettings(BlogConfigType.title)} */}
+        <div className="imageWrapper">
+          <Image
+            src={getUserProfile(ProfileConfigType.image)}
+            fill
+            css={{ objectFit: "cover" }}
+            alt=""
+            fetchPriority="auto"
+          />
+        </div>
       </h1>
     </StyledWrapper>
   )
@@ -41,5 +52,13 @@ const StyledWrapper = styled(Link)`
     @media (max-width: 767px) {
       display: none;
     }
+  }
+
+  .imageWrapper {
+    overflow: hidden;
+    position: relative;
+    height: 5.5rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
   }
 `
