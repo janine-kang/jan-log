@@ -4,6 +4,7 @@ import Tag from "../Tags/Tag"
 import { TPost } from "../../types"
 import styled from "@emotion/styled"
 import { inter } from "src/assets"
+import Image from "next/image"
 
 type Props = {
   data: TPost
@@ -21,6 +22,11 @@ const PostCard: React.FC<Props> = ({ data }) => {
             <header className="top">
               <h2>{data.title}</h2>
             </header>
+            <div className="image">
+              {data.thumbnail && (
+                <Image src={data.thumbnail} fill alt="" fetchPriority="auto" />
+              )}
+            </div>
 
             <div className="summary">
               <p>{data.summary}</p>
@@ -47,7 +53,6 @@ const StyledWrapper = styled.div`
   article {
     overflow: hidden;
     position: relative;
-    margin-bottom: 1.5rem;
     border-radius: 1rem;
     transition-property: box-shadow;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -61,6 +66,7 @@ const StyledWrapper = styled.div`
       width: auto;
       position: relative;
       transition: color 0.3s ease;
+      word-break: keep-all;
 
       &::after {
         content: "";
@@ -82,11 +88,18 @@ const StyledWrapper = styled.div`
       transform: scaleX(1);
     }
 
-    > .category {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      z-index: 10;
+    .image {
+      margin: 1rem 0;
+      border-radius: 25px;
+
+      img {
+        width: auto;
+        height: 35rem;
+
+        position: unset !important;
+        border-radius: 25px;
+        object-fit: contain;
+      }
     }
 
     > .content {
@@ -121,7 +134,6 @@ const StyledWrapper = styled.div`
       > .summary {
         margin-bottom: 1rem;
         p {
-          display: none;
           color: ${({ theme }) => theme.colors.gray11};
 
           @media (min-width: 768px) {

@@ -52,6 +52,7 @@ const StyledWrapper = styled(Link)`
     position: relative;
     font-size: 1.8rem;
     transition: color 0.3s ease;
+    word-break: keep-all;
 
     &::after {
       content: "";
