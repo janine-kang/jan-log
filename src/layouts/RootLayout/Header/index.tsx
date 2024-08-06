@@ -11,7 +11,7 @@ const Header: React.FC<Props> = ({ fullWidth }) => {
   return (
     <StyledWrapper>
       <div data-full-width={fullWidth} className="container">
-        <Logo />
+        <Logo fullWidth={fullWidth} />
         <NavBar />
       </div>
     </StyledWrapper>

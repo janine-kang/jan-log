@@ -1,11 +1,16 @@
 import Link from "next/link"
-import { CONFIG } from "site.config"
 import styled from "@emotion/styled"
+import { BlogConfigType, getBlogSettings } from "src/general"
 
-const Logo = () => {
+type Props = {
+  fullWidth: Boolean
+}
+
+const Logo: React.FC<Props> = ({ fullWidth }) => {
   return (
-    <StyledWrapper href="/" aria-label={CONFIG.blog.title}>
-      <h1>{CONFIG.blog.description}</h1>
+    <StyledWrapper href="/" aria-label={getBlogSettings(BlogConfigType.title)}>
+      <h1 className="logo">{getBlogSettings(BlogConfigType.description)}</h1>
+      <h1 className="title">{getBlogSettings(BlogConfigType.title)}</h1>
     </StyledWrapper>
   )
 }
@@ -18,5 +23,20 @@ const StyledWrapper = styled(Link)`
     padding: 0.75rem 0;
     font-weight: 600;
     white-space: nowrap;
+  }
+
+  .title {
+    display: none;
+
+    @media (max-width: 767px) {
+      display: block;
+      text-decoration-line: underline;
+    }
+  }
+
+  .logo {
+    @media (max-width: 767px) {
+      display: none;
+    }
   }
 `

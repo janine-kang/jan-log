@@ -92,6 +92,11 @@ const StyledWrapper = styled.div`
   grid-template-columns: repeat(8, minmax(0, 1fr));
   gap: 2rem;
 
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+  }
+
   .list {
     grid-column: span 7 / span 7;
     display: flex;
@@ -113,6 +118,10 @@ const StyledWrapper = styled.div`
       margin: 1rem 0;
       text-align: end;
       text-decoration: underline;
+
+      @media (max-width: 767px) {
+        text-align: start;
+      }
     }
 
     .desc {

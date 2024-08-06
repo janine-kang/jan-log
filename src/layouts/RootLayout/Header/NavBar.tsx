@@ -54,9 +54,9 @@ const StyledWrapper = styled.div`
   ul {
     display: flex;
     flex-direction: row;
-    width: 100%;
 
     @media (max-width: 767px) {
+      width: 100%;
       margin: 0.6rem 0;
     }
 
