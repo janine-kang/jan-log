@@ -20,7 +20,7 @@ const HomeHeader: React.FC<Props> = ({ headlines, type }) => {
     <StyledWrapper>
       <p className="time">
         <span>{type} — </span>
-        {formatDate(date)}
+        <span>{formatDate(date)}</span>
       </p>
       <div className="list">
         {headlines.map((post) => (
@@ -46,6 +46,23 @@ const StyledWrapper = styled.div`
     text-transform: uppercase;
     span {
       word-spacing: 3px;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 14px;
+      font-weight: 600;
+      padding: 5px 0;
+
+      span {
+        background: yellow;
+      }
+
+      &::before {
+        content: "📌  ";
+        left: 0;
+        fint-size: 1rem;
+        background: yellow;
+      }
     }
   }
 

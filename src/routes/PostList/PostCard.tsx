@@ -93,12 +93,17 @@ const StyledWrapper = styled.div`
       border-radius: 25px;
 
       img {
-        width: auto;
-        height: 35rem;
+        width: 100%;
+        height: auto;
 
         position: unset !important;
         border-radius: 25px;
         object-fit: contain;
+
+        @media (min-width: 768px) {
+          height: auto;
+          width: 80% !important;
+        }
       }
     }
 
