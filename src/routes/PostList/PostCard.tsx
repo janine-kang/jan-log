@@ -22,11 +22,16 @@ const PostCard: React.FC<Props> = ({ data }) => {
             <header className="top">
               <h2>{data.title}</h2>
             </header>
-            <div className="image">
-              {data.thumbnail && (
-                <Image src={data.thumbnail} fill alt="" fetchPriority="auto" />
-              )}
-            </div>
+            {data.thumbnail && (
+              <div className="thumbnail">
+                <Image
+                  src={data.thumbnail}
+                  css={{ objectFit: "cover" }}
+                  fill
+                  alt={data.title}
+                />
+              </div>
+            )}
 
             <div className="summary">
               <p>{data.summary}</p>
@@ -88,22 +93,17 @@ const StyledWrapper = styled.div`
       transform: scaleX(1);
     }
 
-    .image {
-      margin: 1rem 0;
-      border-radius: 25px;
+    .thumbnail {
+      overflow: hidden;
+      position: relative;
+      margin: 1.75rem 0;
+      border-radius: 1.5rem;
+      width: 100%;
+      background-color: ${({ theme }) => theme.colors.gray4};
+      padding-bottom: 66%;
 
-      img {
-        width: 100%;
-        height: auto;
-
-        position: unset !important;
-        border-radius: 25px;
-        object-fit: contain;
-
-        @media (min-width: 768px) {
-          height: auto;
-          width: 80% !important;
-        }
+      @media (min-width: 1024px) {
+        padding-bottom: 50%;
       }
     }
 

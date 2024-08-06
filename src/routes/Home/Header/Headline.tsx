@@ -20,11 +20,17 @@ const Headline: React.FC<Props> = ({ post }) => {
               <span className="title">{post.title}</span>
             </h1>
           </header>
-          <div className="image">
-            {post.thumbnail && (
-              <Image src={post.thumbnail} fill alt="" fetchPriority="auto" />
-            )}
-          </div>
+
+          {post.thumbnail && (
+            <div className="thumbnail">
+              <Image
+                src={post.thumbnail}
+                css={{ objectFit: "cover" }}
+                fill
+                alt={post.title}
+              />
+            </div>
+          )}
 
           <div className="summary">
             <p>{post.summary}</p>
@@ -55,22 +61,17 @@ const StyledWrapper = styled(Link)`
     }
   }
 
-  .image {
-    margin: 1rem 0;
-    border-radius: 25px;
+  .thumbnail {
+    overflow: hidden;
+    position: relative;
+    margin: 1.75rem 0;
+    border-radius: 1.5rem;
+    width: 100%;
+    background-color: ${({ theme }) => theme.colors.gray4};
+    padding-bottom: 66%;
 
-    img {
-      width: 100%;
-      height: auto;
-
-      position: unset !important;
-      border-radius: 25px;
-      object-fit: contain;
-
-      @media (min-width: 768px) {
-        height: auto;
-        width: 80% !important;
-      }
+    @media (min-width: 1024px) {
+      padding-bottom: 50%;
     }
   }
 

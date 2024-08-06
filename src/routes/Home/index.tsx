@@ -102,6 +102,9 @@ const StyledWrapper = styled.div`
     @media (min-width: 1024px) {
       grid-column: span 9 / span 9;
     }
+    @media (max-width: 768px) {
+      padding: 0 2rem;
+    }
 
     .contents {
       .time {
