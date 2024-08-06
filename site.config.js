@@ -4,10 +4,11 @@ const CONFIG = {
     name: "Janine",
     image: "/profile.jpeg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
     profileImage: "/memoji.jpg",
+    mobileImage: "/memoji-face.jpg",
     position: "iOS Software Engineer",
     bio: "Now or Never",
-    description:
-      "Front-end 개발부터 iOS 네이티브 개발까지 가능한 클라이언트 개발자 강재닌 입니다. \n 주어진 것을 반드시 해냅니다.",
+    about:
+      "Front-end 부터 iOS Native 개발까지 가능한 \n 클라이언트 개발자 강재닌 입니다. \n\n 주어진 것을 반드시 해냅니다. \n 성장하는 것을 즐깁니다.",
     email: "developerjanine@gmail.com",
     linkedin: "janine-kang",
     github: "janine-kang",

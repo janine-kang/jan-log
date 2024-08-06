@@ -13,10 +13,9 @@ const Logo = () => {
     <StyledWrapper href="/" aria-label={getBlogSettings(BlogConfigType.title)}>
       <h1 className="logo">{getBlogSettings(BlogConfigType.description)}</h1>
       <h1 className="title">
-        {/* {getBlogSettings(BlogConfigType.title)} */}
         <div className="imageWrapper">
           <Image
-            src={getUserProfile(ProfileConfigType.image)}
+            src={getUserProfile(ProfileConfigType.mobileImage)}
             fill
             css={{ objectFit: "cover" }}
             alt=""

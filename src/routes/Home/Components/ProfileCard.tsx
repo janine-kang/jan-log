@@ -1,4 +1,3 @@
-import { CONFIG } from "site.config"
 import Image from "next/image"
 import React from "react"
 import styled from "@emotion/styled"
@@ -42,9 +41,7 @@ const ProfileCard: React.FC<Props> = () => {
               <div className="bio">{getUserProfile(ProfileConfigType.bio)}</div>
             </div>
           </div>
-          <div className="desc">
-            {getUserProfile(ProfileConfigType.description)}
-          </div>
+          <div className="desc">{getUserProfile(ProfileConfigType.about)}</div>
         </div>
         <ContactCard />
       </div>
@@ -125,9 +122,13 @@ const StyledWrapper = styled.div`
       }
 
       .info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
         @media (max-width: 1024px) {
           display: inline-flex;
-          flex-direction: column;
+          align-items: flex-start;
         }
       }
 
@@ -158,12 +159,13 @@ const StyledWrapper = styled.div`
         line-height: 0.875rem;
         word-break: keep-all;
         text-align: center;
-        letter-spacing: 0.6px;
+        font-weight: 600;
+        text-transform: uppercase;
 
         @media (max-width: 1024px) {
           color: #ff3000;
-          font-weight: 600;
           text-align: start;
+          text-transform: none;
         }
       }
       .desc {
