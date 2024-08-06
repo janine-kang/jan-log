@@ -14,5 +14,7 @@ const Detail: React.FC<Props> = () => {
 export default Detail
 
 const StyledWrapper = styled.div`
-  padding: 2rem 0;
+  @media (min-width: 768px) {
+    padding: 2rem 0;
+  }
 `
