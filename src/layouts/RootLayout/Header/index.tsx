@@ -8,6 +8,8 @@ type Props = {
 }
 
 const Header: React.FC<Props> = ({ fullWidth }) => {
+  console.log(fullWidth)
+
   return (
     <StyledWrapper>
       <div data-full-width={fullWidth} className="container">
@@ -26,13 +28,16 @@ const StyledWrapper = styled.div`
   padding: 0 36px;
   height: 100px;
 
+  @media (max-width: 767px) {
+    height: auto;
+  }
+
   .container {
     display: flex;
     flex-direction: row;
     align-items: center;
 
     width: 100%;
-    max-width: 1200px;
     height: 100%;
     margin: 0 auto;
 
@@ -40,6 +45,15 @@ const StyledWrapper = styled.div`
       @media (min-width: 768px) {
         padding-left: 6rem;
         padding-right: 6rem;
+        max-width: 1200px;
+      }
+    }
+
+    &[data-full-width="false"] {
+      @media (max-width: 767px) {
+        flex-direction: column;
+        height: auto;
+        align-items: flex-end;
       }
     }
   }

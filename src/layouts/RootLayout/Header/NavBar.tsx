@@ -34,13 +34,20 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
   margin-left: 16px;
   white-space: nowrap;
+
+  @media (max-width: 767px) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0;
+  }
 
   ul {
     display: flex;
     flex-direction: row;
+    width: 100%;
 
     li {
       display: block;
@@ -62,8 +69,10 @@ const StyledWrapper = styled.div`
 
   .blog {
     gap: 1.2rem;
+    justify-content: space-between;
   }
   .mypage {
+    justify-content: flex-end;
     li {
       font-weight: 500;
     }

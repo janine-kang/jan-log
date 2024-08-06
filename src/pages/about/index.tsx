@@ -39,6 +39,13 @@ const About: React.FC<Props> = ({ recordMap }) => {
 export default About
 
 const StyledWrapper = styled.div`
+  width: 100%;
+  max-width: 1200px;
+
+  @media (max-width: 767px) {
+    max-width: 767px;
+  }
+
   .notion-collection-page-properties {
     display: none !important;
   }
@@ -53,6 +60,11 @@ const StyledWrapper = styled.div`
     font-family: ${permanentMarker.style.fontFamily};
     font-size: 2.4rem;
     color: hsl(0deg 66.67% 58.38%);
+
+    @media (max-width: 767px) {
+      width: 100%;
+      display: none;
+    }
   }
 
   .notion-text {
@@ -62,6 +74,13 @@ const StyledWrapper = styled.div`
     letter-spacing: -0.2px;
     padding: 0px 2px !important;
     margin: 2px 0 !important;
+
+    @media (max-width: 767px) {
+      padding: 0px 1.3rem !important;
+      line-height: 1.4;
+      letter-spacing: -0.2px;
+      word-break: keep-all !important;
+    }
   }
 
   .notion-link {

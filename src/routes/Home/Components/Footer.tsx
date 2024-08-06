@@ -24,7 +24,7 @@ const Footer: React.FC<Props> = ({ className }) => {
         target="_blank"
         rel="noreferrer"
       >
-        © ${getUserProfile(ProfileConfigType.name)}{" "}
+        © {getUserProfile(ProfileConfigType.name)}{" "}
         {from === y || !from ? y : `${from} - ${y}`}
       </a>
     </StyledWrapper>
