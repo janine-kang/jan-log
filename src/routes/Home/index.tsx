@@ -103,7 +103,7 @@ const StyledWrapper = styled.div`
       grid-column: span 9 / span 9;
     }
     @media (max-width: 768px) {
-      padding: 0 2rem;
+      padding: 0 1.4rem;
     }
 
     .contents {
