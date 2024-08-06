@@ -8,8 +8,6 @@ type Props = {
 }
 
 const Header: React.FC<Props> = ({ fullWidth }) => {
-  console.log(fullWidth)
-
   return (
     <StyledWrapper>
       <div data-full-width={fullWidth} className="container">
