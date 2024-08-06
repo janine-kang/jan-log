@@ -8,11 +8,13 @@ import usePostQuery from "src/general/hooks/usePostQuery"
 import { capitalizeFirstLetter } from "src/libs/utils"
 import Category from "src/routes/Detail/components/Category"
 import { inter } from "src/assets"
+import { useRouter } from "next/router"
 
 type Props = {}
 
 const PostDetail: React.FC<Props> = () => {
   const data = usePostQuery()
+  const router = useRouter()
 
   if (!data) return null
 
@@ -40,13 +42,14 @@ const PostDetail: React.FC<Props> = () => {
 export default PostDetail
 
 const StyledWrapper = styled.div`
-  padding: 2.5rem;
+  padding: 2.2rem;
   max-width: 56rem;
   background-color: ${({ theme }) =>
     theme.scheme === "light" ? "white" : theme.colors.gray4};
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   margin: 1rem auto 0;
+
   > article {
     margin: 0 auto;
     max-width: 42rem;
@@ -60,17 +63,17 @@ const StyledWrapper = styled.div`
   .recordWrapper {
     .notion-text {
       font-size: 1rem;
-      word-break: keep-all !important;
       line-height: 1.4;
       font-family: ${inter.style.fontFamily};
       padding: 0px 2px !important;
       margin: 8px 0 !important;
+      word-break: keep-all !important;
       white-space: normal !important;
 
       @media (max-width: 767px) {
         line-height: 1.4;
         letter-spacing: -0.2px;
-        word-break: keep-all !important;
+        word-break: break-all !important;
       }
     }
   }
