@@ -23,8 +23,11 @@ const HomeHeader: React.FC<Props> = ({ headlines, type }) => {
         <span>{formatDate(date)}</span>
       </p>
       <div className="list">
-        {headlines.map((post) => (
-          <Headline key={post.id} post={post} />
+        {headlines.map((post, idx) => (
+          <>
+            {idx !== 0 && <hr />}
+            <Headline key={post.id} post={post} />
+          </>
         ))}
       </div>
     </StyledWrapper>
@@ -36,6 +39,17 @@ export default HomeHeader
 const StyledWrapper = styled.div`
   margin-bottom: 2.5rem;
   padding: 1rem;
+
+  hr {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    hr {
+      display: block;
+      margin: 1rem 0;
+    }
+  }
 
   .time {
     font-family: ${inter.style.fontFamily};
@@ -60,7 +74,7 @@ const StyledWrapper = styled.div`
       &::before {
         content: "📌  ";
         left: 0;
-        fint-size: 1rem;
+        font-size: 1rem;
         background: yellow;
       }
     }
