@@ -2,6 +2,7 @@ import styled from "@emotion/styled"
 import Link from "next/link"
 import Tag from "src/routes/Tags/Tag"
 import { TPost } from "src/types"
+import Image from "next/image"
 
 type Props = {
   post: TPost
@@ -19,6 +20,12 @@ const Headline: React.FC<Props> = ({ post }) => {
               <span className="title">{post.title}</span>
             </h1>
           </header>
+          <div className="image">
+            {post.thumbnail && (
+              <Image src={post.thumbnail} fill alt="" fetchPriority="auto" />
+            )}
+          </div>
+
           <div className="summary">
             <p>{post.summary}</p>
           </div>
@@ -47,11 +54,32 @@ const StyledWrapper = styled(Link)`
       transform: translateY(-3px);
     }
   }
+
+  .image {
+    margin: 1rem 0;
+    border-radius: 25px;
+
+    img {
+      width: 100%;
+      height: auto;
+
+      position: unset !important;
+      border-radius: 25px;
+      object-fit: contain;
+
+      @media (min-width: 768px) {
+        height: auto;
+        width: 80% !important;
+      }
+    }
+  }
+
   .title {
     width: auto;
     position: relative;
     font-size: 1.8rem;
     transition: color 0.3s ease;
+    word-break: keep-all;
 
     &::after {
       content: "";

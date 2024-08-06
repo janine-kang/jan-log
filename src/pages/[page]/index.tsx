@@ -89,8 +89,13 @@ const StyledWrapper = styled.div`
   padding: 2rem 0;
 
   display: grid;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-columns: repeat(9, minmax(0, 1fr));
   gap: 2rem;
+
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+  }
 
   .list {
     grid-column: span 7 / span 7;
@@ -99,7 +104,7 @@ const StyledWrapper = styled.div`
   }
 
   .topic {
-    grid-column: span 1 / span 1;
+    grid-column: span 2 / span 2;
 
     display: flex;
     flex-direction: column;
@@ -113,6 +118,13 @@ const StyledWrapper = styled.div`
       margin: 1rem 0;
       text-align: end;
       text-decoration: underline;
+
+      @media (max-width: 767px) {
+        text-align: start;
+        background: blue;
+        color: white;
+        padding: 15px;
+      }
     }
 
     .desc {

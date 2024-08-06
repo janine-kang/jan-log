@@ -75,7 +75,7 @@ const StyledWrapper = styled.div`
 
   @media (max-width: 768px) {
     display: block;
-    padding: 0.5rem 0;
+    padding: 0.5rem 0 0;
   }
 
   > .lt {
@@ -137,6 +137,12 @@ const StyledWrapper = styled.div`
       @media (min-width: 1024px) {
         display: none;
       }
+
+      @media (max-width: 767px) {
+        margin-top: 2.4rem;
+        padding-bottom: 2rem;
+        background: black;
+      }
     }
   }
 
@@ -155,10 +161,6 @@ const StyledWrapper = styled.div`
     @media (min-width: 1024px) {
       display: block;
       grid-column: span 3 / span 3;
-    }
-
-    .footer {
-      padding-top: 1rem;
     }
   }
 `

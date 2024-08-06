@@ -29,6 +29,10 @@ const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px 0;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `
 
 const Tag = styled.li`

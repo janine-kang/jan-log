@@ -18,7 +18,14 @@ const NavBar: React.FC = () => {
       </ul>
       <ul className="mypage">
         {categoryKey.introduce.map((link) => (
-          <li key={link.id}>
+          <li
+            key={link.id}
+            className={
+              router.asPath === link.to || section === link.to.split("/")[1]
+                ? "info-page"
+                : ""
+            }
+          >
             <Link href={link.to}>{link.name}</Link>
           </li>
         ))}
@@ -34,13 +41,24 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
   margin-left: 16px;
   white-space: nowrap;
+
+  @media (max-width: 767px) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0;
+  }
 
   ul {
     display: flex;
     flex-direction: row;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      margin: 0.6rem 0;
+    }
 
     li {
       display: block;
@@ -51,6 +69,10 @@ const StyledWrapper = styled.div`
       font-weight: 400;
       letter-spacing: 0.1em;
       text-transform: uppercase;
+
+      @media (max-width: 767px) {
+        font-size: 0.9rem;
+      }
     }
   }
 
@@ -58,14 +80,30 @@ const StyledWrapper = styled.div`
     font-weight: 900;
     padding: 0px 2px;
     letter-spacing: 0.5px;
+
+    @media (max-width: 767px) {
+      text-decoration: line-through;
+      color: #ff008a;
+    }
+  }
+
+  .info-page {
+    font-weight: 900 !important;
+    color: #ff008a;
   }
 
   .blog {
     gap: 1.2rem;
+    justify-content: space-between;
   }
+
   .mypage {
+    justify-content: flex-end;
     li {
       font-weight: 500;
+      @media (max-width: 767px) {
+        font-weight: 600;
+      }
     }
   }
 `
