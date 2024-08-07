@@ -59,6 +59,7 @@ const StyledWrapper = styled.div`
     letter-spacing: -1.5px;
     text-transform: uppercase;
     font-family: ${permanentMarker.style.fontFamily};
+    color: #ff3000;
 
     @media (max-width: 768px) {
       display: none;
@@ -148,6 +149,7 @@ const StyledWrapper = styled.div`
         font-size: 0.75rem;
         line-height: 1.25rem;
         color: ${({ theme }) => theme.colors.gray11};
+        font-family: ${inter.style.fontFamily};
 
         @media (max-width: 1024px) {
           margin-bottom: 0.5rem;
@@ -159,13 +161,11 @@ const StyledWrapper = styled.div`
         line-height: 0.875rem;
         word-break: keep-all;
         text-align: center;
-        font-weight: 600;
-        text-transform: uppercase;
 
         @media (max-width: 1024px) {
           color: #ff3000;
           text-align: start;
-          text-transform: none;
+          font-weight: 600;
         }
       }
       .desc {

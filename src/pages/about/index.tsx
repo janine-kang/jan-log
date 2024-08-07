@@ -31,7 +31,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 const About: React.FC<Props> = ({ recordMap }) => {
   return (
     <StyledWrapper>
-      <div className="title">about</div>
       <div className="mobile">
         <ProfileCard />
       </div>
@@ -71,19 +70,6 @@ const StyledWrapper = styled.div`
 
   .notion-page {
     padding: 0;
-  }
-
-  .title {
-    width: 720px;
-    margin: 0 auto;
-    font-family: ${permanentMarker.style.fontFamily};
-    font-size: 2.4rem;
-    color: hsl(0deg 66.67% 58.38%);
-
-    @media (max-width: 1024px) {
-      width: 100%;
-      display: none;
-    }
   }
 
   .notion-text {

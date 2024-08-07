@@ -16,6 +16,7 @@ export enum SettingsType {
 
 export enum ProfileConfigType {
   name = "name",
+  nickname = "nickname",
   image = "image",
   profileImage = "profileImage",
   position = "position",

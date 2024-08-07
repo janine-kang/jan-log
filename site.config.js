@@ -1,7 +1,8 @@
 const CONFIG = {
   // profile setting (required)
   profile: {
-    name: "Janine",
+    name: "강연옥",
+    nickname: "Janine",
     image: "/profile.jpeg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
     profileImage: "/memoji.jpg",
     position: "iOS Software Engineer",
