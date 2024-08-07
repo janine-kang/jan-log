@@ -4,7 +4,6 @@ const CONFIG = {
     name: "Janine",
     image: "/profile.jpeg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
     profileImage: "/memoji.jpg",
-    mobileImage: "/memoji-face.jpg",
     position: "iOS Software Engineer",
     bio: "Now or Never",
     about:
@@ -23,7 +22,9 @@ const CONFIG = {
   // blog setting (required)
   blog: {
     title: "강재닌의 강한 참조",
-    description: "🌊🏄🏻‍♀️🌊🌊",
+    description: "Now or Never",
+    // description: "🌊🏄🏻‍♀️🌊🌊",
+    logo: "/memoji-face.jpg",
     link: "",
     since: "2021", // If leave this empty, current year will be used.
     lang: "en-US", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES', 'ko-KR']

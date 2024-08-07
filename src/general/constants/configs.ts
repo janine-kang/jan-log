@@ -18,7 +18,6 @@ export enum ProfileConfigType {
   name = "name",
   image = "image",
   profileImage = "profileImage",
-  mobileImage = "mobileImage",
   position = "position",
   bio = "bio",
   email = "email",
@@ -31,6 +30,7 @@ export enum ProfileConfigType {
 export enum BlogConfigType {
   title = "title",
   description = "description",
+  logo = "logo",
   link = "link",
   language = "lang",
   since = "since",
