@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Fragment } from "react"
 import { formatDate } from "src/libs/utils"
 import styled from "@emotion/styled"
 import { inter } from "src/assets"
@@ -24,10 +24,10 @@ const HomeHeader: React.FC<Props> = ({ headlines, type }) => {
       </p>
       <div className="list">
         {headlines.map((post, idx) => (
-          <>
+          <Fragment key={post.id}>
             {idx !== 0 && <hr />}
-            <Headline key={post.id} post={post} />
-          </>
+            <Headline post={post} />
+          </Fragment>
         ))}
       </div>
     </StyledWrapper>

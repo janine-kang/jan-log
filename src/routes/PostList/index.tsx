@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import React from "react"
+import React, { Fragment } from "react"
 import PostCard from "src/routes/PostList/PostCard"
 import { TPosts } from "src/types"
 
@@ -15,10 +15,10 @@ const PostList: React.FC<Props> = ({ posts }) => {
       ) : (
         posts.map((post, idx) => {
           return (
-            <>
+            <Fragment key={post.id}>
               {idx !== 0 && <hr />}
-              <PostCard key={post.id} data={post} />
-            </>
+              <PostCard data={post} />
+            </Fragment>
           )
         })
       )}
