@@ -8,11 +8,11 @@ const links = [
 ]
 
 const introduce = [
-  { id: 4, name: "about", to: `/${TSection.about}` },
+  { id: 4, name: "about", to: `/${TSection.work}` },
   {
     id: 5,
-    name: getUserProfile(ProfileConfigType.name),
-    to: `/${TSection.work}`,
+    name: getUserProfile(ProfileConfigType.nickname),
+    to: `/${TSection.about}`,
   },
 ]
 
