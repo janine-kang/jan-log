@@ -84,6 +84,7 @@ const StyledWrapper = styled.div`
   }
   .notion-page {
     padding: 0;
+    overflow-x: scroll;
 
     code {
       white-space: break-spaces !important;
