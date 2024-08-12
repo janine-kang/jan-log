@@ -6,8 +6,6 @@ import { TSection } from "src/general"
 import usePostsQuery from "src/general/hooks/usePostsQuery"
 import NextButtonSVG from "src/assets/svgs/nextButton.svg"
 import PreviousButtonSVG from "src/assets/svgs/previousButton.svg"
-import Category from "../components/Category"
-import { capitalizeFirstLetter } from "src/libs/utils"
 
 type Props = {}
 
@@ -26,8 +24,8 @@ const Footer: React.FC<Props> = () => {
 
   return (
     <StyledWrapper>
-      {previous && (
-        <div className="wrapper">
+      <div className="wrapper" data-exist={previous !== undefined}>
+        {previous && (
           <Link href={`/${page}/${previous.slug}`}>
             <div className="header">
               <PreviousButtonSVG />
@@ -37,11 +35,14 @@ const Footer: React.FC<Props> = () => {
             </div>
             <p className="summary">{previous.summary}</p>
           </Link>
-        </div>
-      )}
-
-      {next && (
-        <div className="wrapper" data-layout="right">
+        )}
+      </div>
+      <div
+        className="wrapper"
+        data-layout="right"
+        data-exist={next !== undefined}
+      >
+        {next && (
           <Link href={`/${page}/${next.slug}`}>
             <div className="header" data-layout="right">
               <span className="title">{next.title}</span>
@@ -53,8 +54,8 @@ const Footer: React.FC<Props> = () => {
             </div>
             <p className="summary">{next.summary}</p>
           </Link>
-        </div>
-      )}
+        )}
+      </div>
     </StyledWrapper>
   )
 }
@@ -94,27 +95,29 @@ const StyledWrapper = styled.div`
     border-radius: 0.6rem;
 
     :hover {
-      color: ${({ theme }) => theme.colors.gray12};
+      &[data-exist="true"] {
+        color: ${({ theme }) => theme.colors.gray12};
 
-      @media (min-width: 768px) {
-        background: white;
-        box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.1);
-      }
-
-      svg {
         @media (min-width: 768px) {
-          display: none;
-        }
-      }
-
-      .category {
-        @media (max-width: 768px) {
-          display: none;
+          background: white;
+          box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.1);
         }
 
-        display: flex;
-        &[data-layout="right"] {
-          transform: scale(-1, 1);
+        svg {
+          @media (min-width: 768px) {
+            display: none;
+          }
+        }
+
+        .category {
+          @media (max-width: 768px) {
+            display: none;
+          }
+
+          display: flex;
+          &[data-layout="right"] {
+            transform: scale(-1, 1);
+          }
         }
       }
     }
