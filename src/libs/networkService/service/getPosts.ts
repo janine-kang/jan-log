@@ -2,12 +2,12 @@ import { queryKey } from "src/general"
 import { queryClient } from "src/libs/react-query"
 import { filterPosts } from "src/libs/networkService/notion"
 
-import { TSection } from "src/types"
+import { TSection } from "src/general"
 import { getPostListData } from "../network/getPostListData"
 
 export const getPosts = async () => {
   let sections: { [key in TSection]: any[] } = {
-    [TSection.archive]: [],
+    [TSection.tech]: [],
     [TSection.books]: [],
     [TSection.journal]: [],
     [TSection.work]: [],

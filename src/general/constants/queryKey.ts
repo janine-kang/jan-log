@@ -1,4 +1,4 @@
-import { TSection } from "src/types"
+import { TSection } from "./categoryKey"
 
 export const queryKey = {
   scheme: () => ["scheme"],

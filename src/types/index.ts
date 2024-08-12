@@ -2,6 +2,7 @@ import { NextPage } from "next"
 import { AppProps } from "next/app"
 import { ExtendedRecordMap } from "notion-types"
 import { ReactElement, ReactNode } from "react"
+import { TSection } from "src/general"
 
 // TODO: refactor types
 export type NextPageWithLayout<PageProps = {}> = NextPage<PageProps> & {
@@ -10,15 +11,6 @@ export type NextPageWithLayout<PageProps = {}> = NextPage<PageProps> & {
 
 export type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
-}
-
-export enum TSection {
-  archive = "archive",
-  books = "books",
-  journal = "journal",
-  work = "work",
-  about = "about",
-  all = "",
 }
 
 export type TPost = {
