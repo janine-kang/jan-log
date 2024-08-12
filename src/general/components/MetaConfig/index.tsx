@@ -1,12 +1,11 @@
 import Head from "next/head"
+import { TSection } from "src/general"
 import {
   getBlogSettings,
   BlogConfigType,
   getUserProfile,
   ProfileConfigType,
 } from "src/general/constants/configs"
-
-import { TSection } from "src/types"
 
 export type MetaConfigProps = {
   title: string

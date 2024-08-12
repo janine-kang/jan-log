@@ -2,7 +2,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import styled from "@emotion/styled"
 import { inter } from "src/assets"
-import { TSection } from "src/types"
+import { TSection } from "src/general"
 
 type Props = {
   tagList: string[]

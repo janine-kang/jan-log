@@ -1,4 +1,5 @@
-import { TPosts, TSection } from "src/types"
+import { TPosts } from "src/types"
+import { TSection } from "src/general"
 import { GetStaticProps } from "next"
 import styled from "@emotion/styled"
 import { permanentMarker } from "src/assets"

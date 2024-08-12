@@ -1,5 +1,5 @@
 import { colors } from "src/styles"
-import { TSection } from "src/types"
+import { TSection } from "src/general"
 
 export function formatDate(date: any, local: any = "en-US") {
   const d = new Date(date)
@@ -16,24 +16,9 @@ export function capitalizeFirstLetter(word: string) {
   return word.charAt(0).toUpperCase() + word.slice(1)
 }
 
-export function toTSection(key: string): TSection {
-  switch (key) {
-    case "archive":
-      return TSection.archive
-    case "books":
-      return TSection.books
-    case "journal":
-      return TSection.journal
-    case "work":
-      return TSection.work
-    default:
-      return TSection.all
-  }
-}
-
 export function getSectionColor(section: TSection): string {
   switch (section) {
-    case TSection.archive:
+    case TSection.tech:
       return colors.light.indigo6
     case TSection.books:
       return colors.light.pink5

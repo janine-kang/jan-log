@@ -1,6 +1,5 @@
 import Detail from "src/routes/Detail"
-import { NextPageWithLayout, TPosts, TSection } from "../../../types"
-import { toTSection } from "src/libs/utils"
+
 import CustomError from "src/routes/Error"
 
 import MetaConfig from "src/general/components/MetaConfig"
@@ -15,8 +14,11 @@ import {
   RevalidationConfigType,
   getBlogSettings,
   BlogConfigType,
+  TSection,
+  toTSection,
 } from "src/general"
 import { getArticle } from "src/libs/networkService/service/getArticle"
+import { NextPageWithLayout, TPosts } from "src/types"
 
 export const getStaticPaths = async () => {
   let posts = queryClient.getQueryData(queryKey.posts()) as TPosts

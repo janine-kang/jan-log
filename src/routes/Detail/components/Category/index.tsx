@@ -3,7 +3,8 @@ import React from "react"
 import styled from "@emotion/styled"
 import { colors } from "src/styles"
 import { inter } from "src/assets"
-import { getSectionColor, toTSection } from "src/libs/utils"
+import { getSectionColor } from "src/libs/utils"
+import { toTSection } from "src/general"
 
 export const getColorClassByName = (name: string): string => {
   const section = toTSection(name.toLowerCase())
