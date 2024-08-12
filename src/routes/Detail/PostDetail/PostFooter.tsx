@@ -26,8 +26,8 @@ const Footer: React.FC<Props> = () => {
 
   return (
     <StyledWrapper>
-      <div className="wrapper">
-        {previous && (
+      {previous && (
+        <div className="wrapper">
           <Link href={`/${page}/${previous.slug}`}>
             <div className="header">
               <PreviousButtonSVG />
@@ -37,10 +37,11 @@ const Footer: React.FC<Props> = () => {
             </div>
             <p className="summary">{previous.summary}</p>
           </Link>
-        )}
-      </div>
-      <div className="wrapper" data-layout="right">
-        {next && (
+        </div>
+      )}
+
+      {next && (
+        <div className="wrapper" data-layout="right">
           <Link href={`/${page}/${next.slug}`}>
             <div className="header" data-layout="right">
               <span className="title">{next.title}</span>
@@ -52,8 +53,8 @@ const Footer: React.FC<Props> = () => {
             </div>
             <p className="summary">{next.summary}</p>
           </Link>
-        )}
-      </div>
+        </div>
+      )}
     </StyledWrapper>
   )
 }
