@@ -10,6 +10,7 @@ import {
   ProfileConfigType,
 } from "src/general"
 import Tag from "src/routes/Tags/Tag"
+import { inter } from "src/assets"
 
 type Props = {
   data: TPost
@@ -100,7 +101,8 @@ const StyledWrapper = styled.div`
       }
       .date {
         margin-right: 0.5rem;
-
+        font-size: 14px;
+        font-family: ${inter.style.fontFamily};
         @media (min-width: 768px) {
           margin-left: 0;
         }
