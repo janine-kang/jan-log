@@ -85,4 +85,10 @@ const StyledWrapper = styled.div`
     font-family: ${permanentMarker.style.fontFamily};
     border-bottom: none !important;
   }
+
+  .notion-asset-wrapper-image {
+    div {
+      height: 100% !important;
+    }
+  }
 `
