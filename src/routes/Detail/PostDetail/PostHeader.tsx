@@ -133,7 +133,7 @@ const StyledWrapper = styled.div`
       }
 
       @media (min-width: 1024px) {
-        padding-bottom: 50%;
+        padding-bottom: 5rem;
       }
     }
   }

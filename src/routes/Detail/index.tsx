@@ -1,6 +1,6 @@
 import PostDetail from "./PostDetail"
 import styled from "@emotion/styled"
-import Footer from "./PostDetail/PostFooter"
+import PostNavigator from "./PostDetail/PostNavigator"
 
 type Props = {}
 
@@ -8,7 +8,7 @@ const Detail: React.FC<Props> = () => {
   return (
     <StyledWrapper>
       <PostDetail />
-      <Footer />
+      <PostNavigator />
     </StyledWrapper>
   )
 }

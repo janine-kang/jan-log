@@ -36,7 +36,7 @@ const PostDetail: React.FC<Props> = () => {
         <div className="recordWrapper">
           <NotionRenderer recordMap={data.block} />
         </div>
-        <CommentBox data={data} />
+        <CommentBox />
       </article>
     </StyledWrapper>
   )

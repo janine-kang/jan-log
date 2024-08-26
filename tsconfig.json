@@ -18,6 +18,6 @@
     "incremental": true,
     "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "site.config.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "site.config.js", "src/routes/Detail/PostDetail/CommentBox/GiscusComment.tsx"],
   "exclude": ["node_modules"]
 }

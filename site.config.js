@@ -58,19 +58,14 @@ const CONFIG = {
       siteVerification: process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION || "",
     },
   },
-  utterances: {
-    enable: false,
+  giscus: {
+    enable: true,
     config: {
-      repo: process.env.NEXT_PUBLIC_UTTERANCES_REPO || "",
+      repo: process.env.NEXT_PUBLIC_GISCUS_REPO || "",
+      repoId: process.env.NEXT_PUBLIC_GISCUS_REPO_ID || "",
+      category: process.env.NEXT_PUBLIC_GISCUS_CATEGORY || "",
+      categoryId: process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID || "",
       "issue-term": "og:title",
-      label: "💬 Utterances",
-    },
-  },
-  cusdis: {
-    enable: false,
-    config: {
-      host: "https://cusdis.com",
-      appid: "", // Embed Code -> data-app-id value
     },
   },
   isProd: process.env.VERCEL_ENV === "production", // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
