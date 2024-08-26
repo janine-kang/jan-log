@@ -9,7 +9,7 @@ import PreviousButtonSVG from "src/assets/svgs/previousButton.svg"
 
 type Props = {}
 
-const Footer: React.FC<Props> = () => {
+const PostNavigator: React.FC<Props> = () => {
   const router = useRouter()
   const { page, slug } = router.query
   const list = usePostsQuery(page as TSection)
@@ -60,7 +60,7 @@ const Footer: React.FC<Props> = () => {
   )
 }
 
-export default Footer
+export default PostNavigator
 
 const StyledWrapper = styled.div`
   display: flex;
