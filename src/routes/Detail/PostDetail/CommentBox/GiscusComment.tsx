@@ -22,7 +22,7 @@ const GiscusComment = () => {
         inputPosition="top"
         theme="light"
         lang="en"
-        loading="lazy"
+        loading="eager"
       />
     </StyledWrapper>
   )
