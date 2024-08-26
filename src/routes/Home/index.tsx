@@ -29,8 +29,8 @@ const Home: React.FC<Props> = () => {
 
   if (pinnedPosts.length === 0) {
     hasPinned = false
-    pinnedPosts = posts.slice(0, 2)
-    posts = posts.slice(2)
+    pinnedPosts = posts.slice(0, 1)
+    posts = posts.slice(1)
   }
 
   return (
