@@ -8,7 +8,7 @@ import { getPostListData } from "../network/getPostListData"
 export const getPosts = async () => {
   let sections: { [key in TSection]: any[] } = {
     [TSection.tech]: [],
-    [TSection.books]: [],
+    [TSection.articles]: [],
     [TSection.journal]: [],
     [TSection.work]: [],
     [TSection.about]: [],

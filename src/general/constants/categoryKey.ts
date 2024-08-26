@@ -2,7 +2,7 @@ import { getUserProfile, ProfileConfigType } from "./configs"
 
 export enum TSection {
   tech = "tech",
-  books = "books",
+  articles = "articles",
   journal = "journal",
   work = "work",
   about = "about",
@@ -13,8 +13,8 @@ export function toTSection(key: string): TSection {
   switch (key) {
     case "tech":
       return TSection.tech
-    case "books":
-      return TSection.books
+    case "articles":
+      return TSection.articles
     case "journal":
       return TSection.journal
     case "work":
@@ -26,7 +26,7 @@ export function toTSection(key: string): TSection {
 
 const links = [
   { id: 1, name: "tech", to: `/${TSection.tech}` },
-  { id: 2, name: "books", to: `/${TSection.books}` },
+  { id: 2, name: "articles", to: `/${TSection.articles}` },
   { id: 3, name: "journal", to: `/${TSection.journal}` },
 ]
 
