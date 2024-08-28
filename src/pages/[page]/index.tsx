@@ -53,7 +53,8 @@ type Props = {
 
 const MainPage: React.FC<Props> = ({ section, posts }) => {
   const [postList, setPostList] = useState(posts)
-  const params = useRouter().asPath.split("?tag=")[1]
+  const rawParams = useRouter().asPath.split("?tag=")[1]
+  const params = rawParams && decodeURIComponent(rawParams)
   const tags = filterByTags(posts)
   const tagList = tags && Object.keys(tags)
 
