@@ -22,7 +22,7 @@ export function getSectionColor(section: TSection): string {
       return colors.light.indigo6
     case TSection.articles:
       return colors.light.pink5
-    case TSection.journal:
+    case TSection.notes:
       return colors.light.yellow5
     case TSection.work:
       return colors.light.green6

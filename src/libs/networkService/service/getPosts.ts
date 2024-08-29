@@ -9,7 +9,7 @@ export const getPosts = async () => {
   let sections: { [key in TSection]: any[] } = {
     [TSection.tech]: [],
     [TSection.articles]: [],
-    [TSection.journal]: [],
+    [TSection.notes]: [],
     [TSection.work]: [],
     [TSection.about]: [],
     [TSection.all]: [],
