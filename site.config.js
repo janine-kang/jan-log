@@ -1,11 +1,11 @@
 const CONFIG = {
   // profile setting (required)
   profile: {
-    name: "강연옥",
+    name: "강재닌",
     nickname: "Janine",
     image: "/profile.jpeg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
     profileImage: "/memoji.jpg",
-    position: "iOS Software Engineer",
+    position: "Client Engineer",
     bio: "Now or Never",
     about:
       "Front-end 부터 iOS Native 개발까지 가능한 \n 클라이언트 개발자 강재닌 입니다. \n\n 주어진 것을 반드시 해냅니다. \n 성장하는 것을 즐깁니다.",
