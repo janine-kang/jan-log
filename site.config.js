@@ -39,6 +39,8 @@ const CONFIG = {
     collectionViewId: process.env.NOTION_COLLECTION_VIEW_ID,
   },
 
+  link: "https://janine-dev.life",
+
   // plugin configuration (optional)
   googleAnalytics: {
     enable: false,

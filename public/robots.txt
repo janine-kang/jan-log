@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: undefined
+Host: https://janine-dev.life
 
 # Sitemaps
-Sitemap: undefined/sitemap.xml
+Sitemap: https://janine-dev.life/sitemap.xml
